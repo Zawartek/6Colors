@@ -3,7 +3,9 @@ package base;
 public class Case
 {
 	public enum Couleur {Rouge, Jaune, Orange, Vert, Bleu, Violet;}
-	public Couleur couleur;
+	private Couleur couleur;
+	
+	private Joueur joueur;
 	
 	public Case(Couleur couleurP)
 	{
@@ -25,10 +27,20 @@ public class Case
 		this.couleur = couleurP;
 	}
 	
+	public Joueur getJoueur()
+	{
+		return joueur;
+	}
+
+	public void setJoueur(Joueur joueur)
+	{
+		this.joueur = joueur;
+	}
+
 	public static Case randomInitCase()
 	{
 		Case caseR = new Case();
-		int rand = (int)(Math.random() * (5 - 0 + 1 )) + 0;
+		int rand = (int)(Math.random() * (7));
 		
 		switch (rand)
 		{

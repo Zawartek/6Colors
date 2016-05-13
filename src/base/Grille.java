@@ -5,26 +5,27 @@ import java.awt.Dimension;
 import base.Case.Couleur;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Grille
 {
-	private Case [][] Grille;
+	private Case [][] grille;
 	
 	public Case[][] getGrille()
 	{
-		return Grille;
+		return grille;
 	}
 	
 	public void setGrille(Case[][] grille)
 	{
-		this.Grille = grille;
+		this.grille = grille;
 	}
 
 	public void initGrid(int tailleGrille)
 	{
-		Grille = new Case[tailleGrille][tailleGrille];
+		grille = new Case[tailleGrille][tailleGrille];
 		
 		int i,j;
 		
@@ -32,7 +33,7 @@ public class Grille
 		{
 			for (j = 0; j < tailleGrille; j ++)
 			{
-				Grille[i][j] = Case.randomInitCase();
+				grille[i][j] = Case.randomInitCase();
 			}
 		}
 	}
@@ -41,11 +42,11 @@ public class Grille
 	{
 		int i,j;
 		
-		for (i = 0; i < Grille.length; i ++)
+		for (i = 0; i < grille.length; i ++)
 		{
-			for (j = 0; j < Grille[0].length; j ++)
+			for (j = 0; j < grille[0].length; j ++)
 			{
-				System.out.print(Grille[i][j].getCouleur().name() + "\t");
+				System.out.print(grille[i][j].getCouleur().name() + "\t");
 			}
 			
 			System.out.println();
@@ -63,47 +64,60 @@ public class Grille
 		
 		int x, y;
 		
-		for(x = 0; x < Grille.length; x ++)
+		for(x = 0; x < grille.length; x ++)
 		{
-			for(y = 0; y < Grille[0].length; y ++)
+			for(y = 0; y < grille[0].length; y ++)
 			{
 				Rectangle rectangle = new Rectangle();
 
-				if (Grille[x][y].getCouleur() == Couleur.Rouge)
+				if (grille[x][y].getCouleur() == Couleur.Rouge)
 				{
 					rectangle.setFill(Color.RED);
 				}
-				else if (Grille[x][y].getCouleur() == Couleur.Jaune)
+				else if (grille[x][y].getCouleur() == Couleur.Jaune)
 				{
 					rectangle.setFill(Color.YELLOW);
 				}
-				else if (Grille[x][y].getCouleur() == Couleur.Orange)
+				else if (grille[x][y].getCouleur() == Couleur.Orange)
 				{
 					rectangle.setFill(Color.ORANGE);
 				}
-				else if (Grille[x][y].getCouleur() == Couleur.Vert)
+				else if (grille[x][y].getCouleur() == Couleur.Vert)
 				{
 					rectangle.setFill(Color.GREEN);
 				}
-				else if (Grille[x][y].getCouleur() == Couleur.Bleu)
+				else if (grille[x][y].getCouleur() == Couleur.Bleu)
 				{
 					rectangle.setFill(Color.BLUE);
 				}
-				else if (Grille[x][y].getCouleur() == Couleur.Violet)
+				else if (grille[x][y].getCouleur() == Couleur.Violet)
 				{
 					rectangle.setFill(Color.VIOLET);
 				}
 
-				rectangle.setX(width * 0.80 / (Grille.length + 1) * (x + 0.5));
-				rectangle.setY(height / (Grille.length + 1) * (y + 0.5));
+				rectangle.setX(width * 0.80 /  (grille.length + 1) * (x + 0.5));
+				rectangle.setY(height / (grille.length + 1) * (y + 0.5));
 
-				rectangle.setWidth((width * 0.80) / (Grille.length + 1));
-				rectangle.setHeight((height) / (Grille.length + 1));
+				rectangle.setWidth((width * 0.80) / (grille.length + 1));
+				rectangle.setHeight(height / (grille.length + 1));
 				rectangle.setStroke(Color.BLACK);
 		        
 		        root.getChildren().add(rectangle);
 			}
 		}
+		
+		Rectangle rectangle = new Rectangle();
+		
+		rectangle.setX(width * 0.80 /  (grille.length + 1) * 12);
+		rectangle.setY(height / (grille.length + 1)* 1);
+
+		rectangle.setWidth((width * 0.80) / (grille.length + 1));
+		rectangle.setHeight(height / (grille.length + 1));
+		rectangle.setFill(Color.VIOLET);
+		rectangle.setStroke(Color.BLACK);
+		
+		root.getChildren().add(rectangle);
+		
 		return scene;
 	}
 }
