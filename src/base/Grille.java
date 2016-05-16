@@ -1,17 +1,20 @@
 package base;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
-import base.Case.Couleur;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Grille
 {
 	private Case [][] grille;
+	
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	static int height = (int)(dimension.getHeight() * 0.9);
+	static int width = (int)(dimension.getWidth() * 0.9);
 	
 	public Case[][] getGrille()
 	{
@@ -46,22 +49,15 @@ public class Grille
 		{
 			for (j = 0; j < grille[0].length; j ++)
 			{
-				System.out.print(grille[i][j].getCouleur().name() + "\t");
+				System.out.print(grille[i][j].getCouleur() + "\t");
 			}
 			
 			System.out.println();
 		}
 	}
 	
-	public Scene graphicalShow()
-	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)(dimension.getHeight() * 0.9);
-		int width = (int)(dimension.getWidth() * 0.9);
-		
-		Group root = new Group();
-		Scene scene = new Scene(root, width, height, Color.WHITE);
-		
+	public Group graphicalShow(Group root)
+	{		
 		int x, y;
 		
 		for(x = 0; x < grille.length; x ++)
@@ -69,36 +65,13 @@ public class Grille
 			for(y = 0; y < grille[0].length; y ++)
 			{
 				Rectangle rectangle = new Rectangle();
+				
+				rectangle.setFill(grille[x][y].getCouleur());
 
-				if (grille[x][y].getCouleur() == Couleur.Rouge)
-				{
-					rectangle.setFill(Color.RED);
-				}
-				else if (grille[x][y].getCouleur() == Couleur.Jaune)
-				{
-					rectangle.setFill(Color.YELLOW);
-				}
-				else if (grille[x][y].getCouleur() == Couleur.Orange)
-				{
-					rectangle.setFill(Color.ORANGE);
-				}
-				else if (grille[x][y].getCouleur() == Couleur.Vert)
-				{
-					rectangle.setFill(Color.GREEN);
-				}
-				else if (grille[x][y].getCouleur() == Couleur.Bleu)
-				{
-					rectangle.setFill(Color.BLUE);
-				}
-				else if (grille[x][y].getCouleur() == Couleur.Violet)
-				{
-					rectangle.setFill(Color.VIOLET);
-				}
-
-				rectangle.setX(width * 0.80 /  (grille.length + 1) * (x + 0.5));
+				rectangle.setX(width * 0.9 / (grille.length + 1) * (x + 0.5));
 				rectangle.setY(height / (grille.length + 1) * (y + 0.5));
 
-				rectangle.setWidth((width * 0.80) / (grille.length + 1));
+				rectangle.setWidth((width * 0.9) / (grille.length + 1));
 				rectangle.setHeight(height / (grille.length + 1));
 				rectangle.setStroke(Color.BLACK);
 		        
@@ -106,18 +79,56 @@ public class Grille
 			}
 		}
 		
-		Rectangle rectangle = new Rectangle();
+		return root;
+	}
+	
+	public static ArrayList<Color> choosableColor (Joueur joueurs [])
+	{
+		int i, y;
 		
-		rectangle.setX(width * 0.80 /  (grille.length + 1) * 12);
-		rectangle.setY(height / (grille.length + 1)* 1);
+		ArrayList<Color> choosableColor = Case.getListColor();
+		
+		for (i = 0; i <joueurs.length; i ++)
+		{
+			for (y = 0; y <choosableColor.size(); y ++)
+			{
+				if (joueurs[i].getColor() == choosableColor.get(y))
+				{
+					choosableColor.remove(y);
+				}
+			}
+		}
+		
+		return choosableColor;
+	}
+	
+	public Group generateButton(ArrayList<Color> choosableColor, Group root, Joueur  joueurCourant)
+	{
+		int i, y = 0;
+		
+		for (i =  0; i < choosableColor.size(); i ++)
+		{
+			Rectangle rectangle = new Rectangle();
+			
+			rectangle.setX(width * 0.88);
+			rectangle.setY(height / (grille.length + 1) * (y + 0.5));
 
-		rectangle.setWidth((width * 0.80) / (grille.length + 1));
-		rectangle.setHeight(height / (grille.length + 1));
-		rectangle.setFill(Color.VIOLET);
-		rectangle.setStroke(Color.BLACK);
+			rectangle.setWidth((width * 0.9) / (grille.length + 1));
+			rectangle.setHeight(height / (grille.length + 1));
+			rectangle.setFill(choosableColor.get(i));
+			rectangle.setStroke(Color.BLACK);
+			
+			rectangle.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
+			{
+				Joueur.joue(Color.valueOf(rectangle.getFill() + ""), joueurCourant);
+	        });
+			
+			root.getChildren().add(rectangle);
+			
+			
+			y ++;
+		}
 		
-		root.getChildren().add(rectangle);
-		
-		return scene;
+		return root;
 	}
 }

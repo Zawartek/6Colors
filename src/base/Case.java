@@ -1,28 +1,45 @@
 package base;
 
+import java.util.ArrayList;
+
+import javafx.scene.paint.Color;
+
 public class Case
 {
-	public enum Couleur {Rouge, Jaune, Orange, Vert, Bleu, Violet;}
-	private Couleur couleur;
+	public static ArrayList<Color> getListColor ()
+	{
+		ArrayList<Color> listColor = new ArrayList<Color>();
+		
+		listColor.add(Color.RED);
+		listColor.add(Color.YELLOW);
+		listColor.add(Color.ORANGE);
+		listColor.add(Color.GREEN);
+		listColor.add(Color.BLUE);
+		listColor.add(Color.VIOLET);
+		
+		return listColor;
+	}
+	
+	private Color couleur;
 	
 	private Joueur joueur;
 	
-	public Case(Couleur couleurP)
+	public Case(Color couleurP)
 	{
 		couleur = couleurP;
 	}
 	
 	public Case()
 	{
-		couleur = Couleur.Rouge;
+		couleur = Color.RED;
 	}
 
-	public Couleur getCouleur()
+	public Color getCouleur()
 	{
 		return couleur;
 	}
 
-	public void setCouleur(Couleur couleurP)
+	public void setCouleur(Color couleurP)
 	{
 		this.couleur = couleurP;
 	}
@@ -40,29 +57,10 @@ public class Case
 	public static Case randomInitCase()
 	{
 		Case caseR = new Case();
-		int rand = (int)(Math.random() * (7));
+		int rand = (int)(Math.random() * (6));
 		
-		switch (rand)
-		{
-			case 1:
-				caseR.setCouleur(Couleur.Rouge);
-				break;
-			case 2:
-				caseR.setCouleur(Couleur.Jaune);
-				break;
-			case 3:
-				caseR.setCouleur(Couleur.Orange);
-				break;
-			case 4:
-				caseR.setCouleur(Couleur.Vert);
-				break;
-			case 5:
-				caseR.setCouleur(Couleur.Bleu);
-				break;
-			case 6:
-				caseR.setCouleur(Couleur.Violet);
-				break;
-		}
+		caseR.setCouleur(getListColor().get(rand));
+		
 		return caseR;
 	}
 }

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Test extends Application
@@ -19,9 +18,21 @@ public class Test extends Application
         Grille grille =  new Grille();
     	grille.initGrid(10);
     	grille.showGrid();
-    	Scene scene = grille.graphicalShow();
-
+    	
+    	Group root = new Group();
+    	root = grille.graphicalShow(root);
+    	
+    	Joueur joueurs [] =  new Joueur [1];
+    	
+    	joueurs[0] = new Joueur("Zaza", grille.getGrille()[0][0].getCouleur());
+    	
+    	Joueur joueurCourant = joueurs[0];
+    	joueurCourant.setCaseOwn(grille.getGrille()[0][0]);
+    	
+    	root = grille.generateButton(Grille.choosableColor(joueurs), root, joueurCourant);
+    	
     	primaryStage.setTitle("Six Couleurs");
+    	Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
     	primaryStage.setScene(scene);
 
         primaryStage.show();
