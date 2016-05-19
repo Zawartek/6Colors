@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
 public class Grille
 {
@@ -36,7 +37,7 @@ public class Grille
 		{
 			for (j = 0; j < tailleGrille; j ++)
 			{
-				grille[i][j] = Case.randomInitCase();
+				grille[i][j] = Case.randomInitCase(i, j);
 			}
 		}
 	}
@@ -73,7 +74,15 @@ public class Grille
 
 				rectangle.setWidth((width * 0.9) / (grille.length + 1));
 				rectangle.setHeight(height / (grille.length + 1));
-				rectangle.setStroke(Color.BLACK);
+				
+				if (grille[x][y].getJoueur() != null)
+				{
+					rectangle.setStroke(Color.WHITE);
+				}
+				else
+				{
+					rectangle.setStroke(Color.BLACK);
+				}
 		        
 		        root.getChildren().add(rectangle);
 			}
@@ -130,5 +139,34 @@ public class Grille
 		}
 		
 		return root;
+	}
+	
+	public void newCase (Case caseP, Joueur joueurCourant)
+	{
+		int x, y;
+		
+		x= caseP.getCoordX();
+		y = caseP.getCoordY();
+			
+		if ((x - 1 >= 0) && (getGrille()[x - 1][y].getCouleur() == joueurCourant.getColor()) && (getGrille()[x - 1][y].getJoueur() == null))
+		{
+			getGrille()[x - 1][y].setJoueur(joueurCourant);
+			newCase(getGrille()[x - 1][y], joueurCourant);
+		}
+		if ((x + 1 >= 0) && (getGrille()[x + 1][y].getCouleur() == joueurCourant.getColor()) && (getGrille()[x + 1][y].getJoueur() == null))
+		{
+			getGrille()[x + 1][y].setJoueur(joueurCourant);
+			newCase(getGrille()[x + 1][y], joueurCourant);
+		}
+		if ((y - 1 >= 0) && (getGrille()[x][y - 1].getCouleur() == joueurCourant.getColor()) && (getGrille()[x][y - 1].getJoueur() == null))
+		{
+			getGrille()[x][y - 1].setJoueur(joueurCourant);
+			newCase(getGrille()[x][y - 1], joueurCourant);
+		}
+		if ((y + 1 >= 0) && (getGrille()[x][y + 1].getCouleur() == joueurCourant.getColor()) && (getGrille()[x][y + 1].getJoueur() == null))
+		{
+			getGrille()[x][y + 1].setJoueur(joueurCourant);
+			newCase(getGrille()[x][y + 1], joueurCourant);
+		}
 	}
 }

@@ -21,17 +21,16 @@ public class Case
 	}
 	
 	private Color couleur;
-	
 	private Joueur joueur;
+	private int coordX;
+	private int coordY;
 	
-	public Case(Color couleurP)
+	public Case(int coordXP, int coordYP)
 	{
-		couleur = couleurP;
-	}
-	
-	public Case()
-	{
-		couleur = Color.RED;
+		this.couleur = Color.RED;
+		this.joueur = null;
+		this.coordX = coordXP;
+		this.coordY = coordYP;
 	}
 
 	public Color getCouleur()
@@ -54,9 +53,29 @@ public class Case
 		this.joueur = joueur;
 	}
 
-	public static Case randomInitCase()
+	public int getCoordX()
 	{
-		Case caseR = new Case();
+		return coordX;
+	}
+
+	public void setCoordX(int coordX)
+	{
+		this.coordX = coordX;
+	}
+
+	public int getCoordY() 
+	{
+		return coordY;
+	}
+
+	public void setCoordY(int coordY)
+	{
+		this.coordY = coordY;
+	}
+
+	public static Case randomInitCase(int coordX, int coordY)
+	{
+		Case caseR = new Case(coordX, coordY);
 		int rand = (int)(Math.random() * (6));
 		
 		caseR.setCouleur(getListColor().get(rand));
