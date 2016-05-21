@@ -9,6 +9,7 @@ public class Joueur
 	private String nom;
 	private Color color;
 	private ArrayList<Case> caseOwn = new ArrayList<Case>();
+	private ArrayList<Case> caseTest = new ArrayList<Case>();
 	
 	public Joueur(String nomP, Color colorP)
 	{
@@ -46,13 +47,16 @@ public class Joueur
 		this.caseOwn.add(caseOwnP);
 	}
 
-	public static void joue(Color colorP, Joueur joueurP)
+	public static void joue(Color colorP, Joueur joueurP, Grille grille)
 	{
 		joueurP.setColor(colorP);
+		ArrayList<Case> caseOwn = joueurP.getCaseOwn();
 		
-		for (Case caseP : joueurP.getCaseOwn())
+		for (Case caseP : caseOwn)
 		{
-			caseP.setCouleur(colorP);
+			grille.newCase(caseP, joueurP);
 		}
+		
+		Test.build(grille, joueurP, joueurs, primaryStage);
 	}
 }

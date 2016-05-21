@@ -134,7 +134,6 @@ public class Grille
 			
 			root.getChildren().add(rectangle);
 			
-			
 			y ++;
 		}
 		
@@ -145,25 +144,25 @@ public class Grille
 	{
 		int x, y;
 		
-		x= caseP.getCoordX();
+		x = caseP.getCoordX();
 		y = caseP.getCoordY();
 			
-		if ((x - 1 >= 0) && (getGrille()[x - 1][y].getCouleur() == joueurCourant.getColor()) && (getGrille()[x - 1][y].getJoueur() == null))
+		if ((x - 1 >= 0) && (getGrille()[x - 1][y].getCouleur() == joueurCourant.getColor()))
 		{
 			getGrille()[x - 1][y].setJoueur(joueurCourant);
 			newCase(getGrille()[x - 1][y], joueurCourant);
 		}
-		if ((x + 1 >= 0) && (getGrille()[x + 1][y].getCouleur() == joueurCourant.getColor()) && (getGrille()[x + 1][y].getJoueur() == null))
+		if ((x + 1 >= 0) && (getGrille()[x + 1][y].getCouleur() == joueurCourant.getColor()))
 		{
 			getGrille()[x + 1][y].setJoueur(joueurCourant);
 			newCase(getGrille()[x + 1][y], joueurCourant);
 		}
-		if ((y - 1 >= 0) && (getGrille()[x][y - 1].getCouleur() == joueurCourant.getColor()) && (getGrille()[x][y - 1].getJoueur() == null))
+		if ((y - 1 >= 0) && (getGrille()[x][y - 1].getCouleur() == joueurCourant.getColor()))
 		{
 			getGrille()[x][y - 1].setJoueur(joueurCourant);
 			newCase(getGrille()[x][y - 1], joueurCourant);
 		}
-		if ((y + 1 >= 0) && (getGrille()[x][y + 1].getCouleur() == joueurCourant.getColor()) && (getGrille()[x][y + 1].getJoueur() == null))
+		if ((y + 1 >= 0) && (getGrille()[x][y + 1].getCouleur() == joueurCourant.getColor()))
 		{
 			getGrille()[x][y + 1].setJoueur(joueurCourant);
 			newCase(getGrille()[x][y + 1], joueurCourant);
