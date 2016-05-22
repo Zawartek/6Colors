@@ -45,18 +45,16 @@ public class Joueur
 	public void setCaseOwn(Case caseOwnP)
 	{
 		this.caseOwn.add(caseOwnP);
+		//caseOwnP.setJoueur(this);
 	}
-
-	public static void joue(Color colorP, Joueur joueurP, Grille grille)
+	
+	public void majCaseColor (Color colorP)
 	{
-		joueurP.setColor(colorP);
-		ArrayList<Case> caseOwn = joueurP.getCaseOwn();
+		ArrayList<Case> caseOwn = getCaseOwn();
 		
 		for (Case caseP : caseOwn)
 		{
-			grille.newCase(caseP, joueurP);
+			caseP.setCouleur(colorP);
 		}
-		
-		Test.build(grille, joueurP, joueurs, primaryStage);
 	}
 }

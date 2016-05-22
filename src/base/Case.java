@@ -51,6 +51,7 @@ public class Case
 	public void setJoueur(Joueur joueur)
 	{
 		this.joueur = joueur;
+		//joueur.setCaseOwn(this);
 	}
 
 	public int getCoordX()

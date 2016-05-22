@@ -22,23 +22,24 @@ public class Test extends Application
     	grille.showGrid();
     	
     	Joueur joueurs [] =  new Joueur [1];
+    	joueurs[0] = new Joueur("Zaza", grille.getGrille()[0][0].getCouleur());
     	Joueur joueurCourant = joueurs[0];
     	
-    	joueurs[0] = new Joueur("Zaza", grille.getGrille()[0][0].getCouleur());
     	joueurCourant.setCaseOwn(grille.getGrille()[0][0]);
-    	
-    	build(grille, joueurCourant, joueurs, primaryStage);
+   
+    	build (grille, joueurCourant, joueurs, primaryStage);
     }
     
-    public static Group build (Grille grille, Joueur joueurCourant, Joueur [] joueurs, Stage primaryStage)
+    public static void build (Grille grille, Joueur joueurCourant, Joueur [] joueurs, Stage primaryStage)
     {
-    	Group root = new Group();
-    	root = grille.graphicalShow(root);
-    	root = grille.generateButton(Grille.choosableColor(joueurs), root, joueurCourant);
+    	Group gridGroup = grille.graphicalShow();
+    	Group buttonGroup = grille.generateButton(joueurs, joueurCourant, primaryStage);
+    	
+    	Group root =  new Group();
+    	root.getChildren().addAll(gridGroup, buttonGroup);
+    	
     	Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
     	primaryStage.setScene(scene);
         primaryStage.show();
-    	
-    	return root;
     }
 }

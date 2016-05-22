@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class Grille
@@ -57,9 +58,10 @@ public class Grille
 		}
 	}
 	
-	public Group graphicalShow(Group root)
-	{		
+	public Group graphicalShow()
+	{
 		int x, y;
+		Group gridGroup = new Group();
 		
 		for(x = 0; x < grille.length; x ++)
 		{
@@ -77,18 +79,19 @@ public class Grille
 				
 				if (grille[x][y].getJoueur() != null)
 				{
-					rectangle.setStroke(Color.WHITE);
+					System.out.println("ON EST LA");
+					rectangle.setStroke(Color.GRAY);
 				}
 				else
 				{
 					rectangle.setStroke(Color.BLACK);
 				}
 		        
-		        root.getChildren().add(rectangle);
+				gridGroup.getChildren().add(rectangle);
 			}
 		}
 		
-		return root;
+		return gridGroup;
 	}
 	
 	public static ArrayList<Color> choosableColor (Joueur joueurs [])
@@ -111,9 +114,12 @@ public class Grille
 		return choosableColor;
 	}
 	
-	public Group generateButton(ArrayList<Color> choosableColor, Group root, Joueur  joueurCourant)
+	public Group generateButton(Joueur [] joueurs, Joueur  joueurCourant, Stage primaryStage)
 	{
 		int i, y = 0;
+		Group buttonGroup = new Group();
+		
+		ArrayList<Color> choosableColor = choosableColor(joueurs);
 		
 		for (i =  0; i < choosableColor.size(); i ++)
 		{
@@ -129,15 +135,25 @@ public class Grille
 			
 			rectangle.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
 			{
-				Joueur.joue(Color.valueOf(rectangle.getFill() + ""), joueurCourant);
+				Color colorP = Color.valueOf(rectangle.getFill() + "");
+				joueurCourant.setColor(colorP);
+				joueurCourant.majCaseColor(colorP);
+
+				ArrayList<Case> caseOwn = joueurCourant.getCaseOwn();
+				
+				for (Case caseP : caseOwn)
+				{
+					newCase(caseP, joueurCourant);
+				}
+				Test.build(this, joueurCourant, joueurs, primaryStage);
 	        });
 			
-			root.getChildren().add(rectangle);
+			buttonGroup.getChildren().add(rectangle);
 			
 			y ++;
 		}
 		
-		return root;
+		return buttonGroup;
 	}
 	
 	public void newCase (Case caseP, Joueur joueurCourant)
