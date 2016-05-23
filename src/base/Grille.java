@@ -37,7 +37,7 @@ public class Grille
 		{
 			for (j = 0; j < tailleGrille; j ++)
 			{
-				grille[i][j] = Case.randomInitCase(i, j);
+				grille[i][j] = new Case(i, j, Case.randomColor());
 			}
 		}
 	}
@@ -112,7 +112,7 @@ public class Grille
 		return choosableColor;
 	}
 	
-	public Group generateButton(Joueur [] joueurs, Joueur  joueurCourant, Stage primaryStage)
+	public Group generateButton(Joueur [] joueurs, Joueur  joueurCourant, Stage primaryStage, int indiceJoueur)
 	{
 		int i, y = 0;
 		Group buttonGroup = new Group();
@@ -136,14 +136,10 @@ public class Grille
 				Color colorP = Color.valueOf(rectangle.getFill() + "");
 				joueurCourant.setColor(colorP);
 				joueurCourant.majCaseColor(colorP);
-
-				ArrayList<Case> caseOwn = joueurCourant.getCaseOwn();
+				majCaseJoueur(joueurCourant);
 				
-				for (int z = 0; z < caseOwn.size(); z ++)
-				{
-					newCase(caseOwn.get(z), joueurCourant);
-				}
-				Test.build(this, joueurCourant, joueurs, primaryStage);
+				int newIndiceJoueur = (indiceJoueur + 1) % joueurs.length;
+				Test.build(this, joueurCourant, joueurs, primaryStage, newIndiceJoueur);
 	        });
 			
 			buttonGroup.getChildren().add(rectangle);
@@ -152,6 +148,16 @@ public class Grille
 		}
 		
 		return buttonGroup;
+	}
+	
+	public void majCaseJoueur (Joueur joueurCourant)
+	{
+		ArrayList<Case> caseOwn = joueurCourant.getCaseOwn();
+		
+		for (int z = 0; z < caseOwn.size(); z ++)
+		{
+			newCase(caseOwn.get(z), joueurCourant);
+		}
 	}
 	
 	public void newCase (Case caseP, Joueur joueurCourant)

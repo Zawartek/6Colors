@@ -11,10 +11,11 @@ public class Joueur
 	private ArrayList<Case> caseOwn = new ArrayList<Case>();
 	private ArrayList<Case> caseTest = new ArrayList<Case>();
 	
-	public Joueur(String nomP, Color colorP)
+	public Joueur(String nomP, Case caseP)
 	{
 		this.nom = nomP;
-		this.color = colorP;
+		this.color = caseP.getCouleur();
+		assocJoueurCase(caseP);
 	}
 
 	public String getNom()
@@ -45,6 +46,18 @@ public class Joueur
 	public void setCaseOwn(Case caseOwnP)
 	{
 		this.caseOwn.add(caseOwnP);
+	}
+	
+	public void checkSameColor(Joueur [] joueurs)
+	{
+		for (Joueur joueurP : joueurs)
+		{
+			if (joueurP.getColor().equals(getColor()) && (joueurP != this))
+			{
+				this.setColor();
+			}
+		}
+		
 	}
 	
 	public void majCaseColor (Color colorP)
