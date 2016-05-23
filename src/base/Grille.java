@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 public class Grille
 {
@@ -79,7 +78,6 @@ public class Grille
 				
 				if (grille[x][y].getJoueur() != null)
 				{
-					System.out.println("ON EST LA");
 					rectangle.setStroke(Color.GRAY);
 				}
 				else
@@ -104,7 +102,7 @@ public class Grille
 		{
 			for (y = 0; y <choosableColor.size(); y ++)
 			{
-				if (joueurs[i].getColor() == choosableColor.get(y))
+				if (joueurs[i].getColor().equals(choosableColor.get(y)))
 				{
 					choosableColor.remove(y);
 				}
@@ -141,9 +139,9 @@ public class Grille
 
 				ArrayList<Case> caseOwn = joueurCourant.getCaseOwn();
 				
-				for (Case caseP : caseOwn)
+				for (int z = 0; z < caseOwn.size(); z ++)
 				{
-					newCase(caseP, joueurCourant);
+					newCase(caseOwn.get(z), joueurCourant);
 				}
 				Test.build(this, joueurCourant, joueurs, primaryStage);
 	        });
@@ -163,25 +161,21 @@ public class Grille
 		x = caseP.getCoordX();
 		y = caseP.getCoordY();
 			
-		if ((x - 1 >= 0) && (getGrille()[x - 1][y].getCouleur() == joueurCourant.getColor()))
+		if ((x - 1 >= 0) && (getGrille()[x - 1][y].getJoueur() == null) && (getGrille()[x - 1][y].getCouleur().equals(joueurCourant.getColor())))
 		{
-			getGrille()[x - 1][y].setJoueur(joueurCourant);
-			newCase(getGrille()[x - 1][y], joueurCourant);
+			joueurCourant.assocJoueurCase(getGrille()[x - 1][y]);
 		}
-		if ((x + 1 >= 0) && (getGrille()[x + 1][y].getCouleur() == joueurCourant.getColor()))
+		if ((x + 1 < grille.length) && (getGrille()[x + 1][y].getJoueur() == null) && (getGrille()[x + 1][y].getCouleur().equals(joueurCourant.getColor())))
 		{
-			getGrille()[x + 1][y].setJoueur(joueurCourant);
-			newCase(getGrille()[x + 1][y], joueurCourant);
+			joueurCourant.assocJoueurCase(getGrille()[x + 1][y]);
 		}
-		if ((y - 1 >= 0) && (getGrille()[x][y - 1].getCouleur() == joueurCourant.getColor()))
+		if ((y - 1 >= 0) && (getGrille()[x][y - 1].getJoueur() == null) && (getGrille()[x][y - 1].getCouleur().equals(joueurCourant.getColor())))
 		{
-			getGrille()[x][y - 1].setJoueur(joueurCourant);
-			newCase(getGrille()[x][y - 1], joueurCourant);
+			joueurCourant.assocJoueurCase(getGrille()[x][y - 1]);
 		}
-		if ((y + 1 >= 0) && (getGrille()[x][y + 1].getCouleur() == joueurCourant.getColor()))
+		if ((y + 1 < grille.length) && (getGrille()[x][y + 1].getJoueur() == null) && (getGrille()[x][y + 1].getCouleur().equals(joueurCourant.getColor())))
 		{
-			getGrille()[x][y + 1].setJoueur(joueurCourant);
-			newCase(getGrille()[x][y + 1], joueurCourant);
+			joueurCourant.assocJoueurCase(getGrille()[x][y + 1]);
 		}
 	}
 }

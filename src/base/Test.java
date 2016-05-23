@@ -25,7 +25,7 @@ public class Test extends Application
     	joueurs[0] = new Joueur("Zaza", grille.getGrille()[0][0].getCouleur());
     	Joueur joueurCourant = joueurs[0];
     	
-    	joueurCourant.setCaseOwn(grille.getGrille()[0][0]);
+    	joueurCourant.assocJoueurCase(grille.getGrille()[0][0]);
    
     	build (grille, joueurCourant, joueurs, primaryStage);
     }

@@ -45,7 +45,6 @@ public class Joueur
 	public void setCaseOwn(Case caseOwnP)
 	{
 		this.caseOwn.add(caseOwnP);
-		//caseOwnP.setJoueur(this);
 	}
 	
 	public void majCaseColor (Color colorP)
@@ -56,5 +55,11 @@ public class Joueur
 		{
 			caseP.setCouleur(colorP);
 		}
+	}
+	
+	public void assocJoueurCase(Case caseP)
+	{
+		setCaseOwn(caseP);
+		caseP.setJoueur(this);
 	}
 }
