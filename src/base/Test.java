@@ -1,7 +1,5 @@
 package base;
 
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -24,9 +22,16 @@ public class Test extends Application
     	//grille.showGrid();
     	
     	int indiceJoueur = 0;
-    	Joueur joueurs [] =  new Joueur [2];
+    	Joueur joueurs [] =  new Joueur [4];
     	joueurs[0] = new Joueur("J1", grille.getGrille()[0][0]);
-    	joueurs[1] = new Joueur("J2", grille.getGrille()[0][grille.getGrille()[0].length - 1]);
+    	joueurs[1] = new Joueur("J2", grille.getGrille()[grille.getGrille()[0].length - 1][0]);
+    	joueurs[2] = new Joueur("J3", grille.getGrille()[0][grille.getGrille()[0].length - 1]);
+    	joueurs[3] = new Joueur("J4", grille.getGrille()[grille.getGrille()[0].length - 1][grille.getGrille()[0].length - 1]);
+    	
+    	for (int x = 0; x < joueurs.length; x ++)
+    	{
+    		joueurs[x].checkSameColor(joueurs);
+    	}
     	
     	for (int q = 0; q < joueurs.length; q ++)
     	{
@@ -49,6 +54,5 @@ public class Test extends Application
     	Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
     	primaryStage.setScene(scene);
         primaryStage.show();
-        
     }
 }

@@ -57,6 +57,24 @@ public class Grille
 		}
 	}
 	
+	public void showOwner()
+	{
+		int i,j;
+		
+		for (i = 0; i < grille.length; i ++)
+		{
+			for (j = 0; j < grille[0].length; j ++)
+			{
+				if (grille[i][j].getJoueur() != null)
+				{
+					System.out.print(grille[i][j].getJoueur().getNom() + "\t");
+				}
+			}
+			
+			System.out.println();
+		}
+	}
+	
 	public Group graphicalShow()
 	{
 		int x, y;
@@ -129,13 +147,14 @@ public class Grille
 			rectangle.setWidth((width * 0.9) / (grille.length + 1));
 			rectangle.setHeight(height / (grille.length + 1));
 			rectangle.setFill(choosableColor.get(i));
-			rectangle.setStroke(Color.BLACK);
+			rectangle.setStroke(Color.BLACK);			
 			
 			rectangle.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
 			{
 				Color colorP = Color.valueOf(rectangle.getFill() + "");
 				joueurCourant.setColor(colorP);
 				joueurCourant.majCaseColor(colorP);
+				
 				majCaseJoueur(joueurCourant);
 				
 				int newIndiceJoueur = (indiceJoueur + 1) % joueurs.length;

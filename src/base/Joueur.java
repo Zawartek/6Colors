@@ -9,7 +9,6 @@ public class Joueur
 	private String nom;
 	private Color color;
 	private ArrayList<Case> caseOwn = new ArrayList<Case>();
-	private ArrayList<Case> caseTest = new ArrayList<Case>();
 	
 	public Joueur(String nomP, Case caseP)
 	{
@@ -52,12 +51,13 @@ public class Joueur
 	{
 		for (Joueur joueurP : joueurs)
 		{
-			if (joueurP.getColor().equals(getColor()) && (joueurP != this))
+			while ((joueurP != this) && (joueurP.getColor().equals(this.getColor())))
 			{
-				this.setColor();
+				Color newColor = Case.randomColor();
+				this.setColor(newColor);
+				this.majCaseColor(newColor);
 			}
 		}
-		
 	}
 	
 	public void majCaseColor (Color colorP)

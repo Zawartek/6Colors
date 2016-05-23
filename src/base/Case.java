@@ -29,6 +29,8 @@ public class Case
 	{
 		this.joueur = null;
 		this.couleur = colorP;
+		this.coordX = coordXP;
+		this.coordY = coordYP;
 	}
 
 	public Color getCouleur()
