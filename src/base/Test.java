@@ -28,7 +28,7 @@ public class Test extends Application
     	joueurs[2] = new Joueur("J3", grille.getGrille()[0][grille.getGrille()[0].length - 1]);
     	joueurs[3] = new Joueur("J4", grille.getGrille()[grille.getGrille()[0].length - 1][grille.getGrille()[0].length - 1]);
     	
-    	for (int x = 0; x < joueurs.length; x ++)
+    	for (int x = 0; x < joueurs.length; x++)
     	{
     		joueurs[x].checkSameColor(joueurs);
     	}

@@ -13,14 +13,14 @@ public class Case
 		listColor.add(Color.RED);
 		listColor.add(Color.YELLOW);
 		listColor.add(Color.ORANGE);
-		listColor.add(Color.GREEN);
 		listColor.add(Color.BLUE);
-		listColor.add(Color.VIOLET);
+		listColor.add(Color.PURPLE);
+		listColor.add(Color.GREEN);
 		
 		return listColor;
 	}
 	
-	private Color couleur;
+	private Color color;
 	private Joueur joueur;
 	private int coordX;
 	private int coordY;
@@ -28,19 +28,19 @@ public class Case
 	public Case(int coordXP, int coordYP, Color colorP)
 	{
 		this.joueur = null;
-		this.couleur = colorP;
+		this.color = colorP;
 		this.coordX = coordXP;
 		this.coordY = coordYP;
 	}
 
-	public Color getCouleur()
+	public Color getColor()
 	{
-		return couleur;
+		return color;
 	}
 
-	public void setCouleur(Color couleurP)
+	public void setColor(Color couleurP)
 	{
-		this.couleur = couleurP;
+		this.color = couleurP;
 	}
 	
 	public Joueur getJoueur()
@@ -73,10 +73,10 @@ public class Case
 		this.coordY = coordY;
 	}
 
-	public static Color randomColor()
+	public static Color randomColor(ArrayList<Color> listColor)
 	{
-		int rand = (int)(Math.random() * (6));
-		Color color = Case.getListColor().get(rand);
+		int rand = (int)(Math.random() * (listColor.size()));
+		Color color = listColor.get(rand);
 		
 		return color;
 	}

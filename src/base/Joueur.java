@@ -13,7 +13,7 @@ public class Joueur
 	public Joueur(String nomP, Case caseP)
 	{
 		this.nom = nomP;
-		this.color = caseP.getCouleur();
+		this.color = caseP.getColor();
 		assocJoueurCase(caseP);
 	}
 
@@ -53,7 +53,8 @@ public class Joueur
 		{
 			while ((joueurP != this) && (joueurP.getColor().equals(this.getColor())))
 			{
-				Color newColor = Case.randomColor();
+				System.out.println(Grille.choosableColor(joueurs).size());
+				Color newColor = Case.randomColor(Grille.choosableColor(joueurs));
 				this.setColor(newColor);
 				this.majCaseColor(newColor);
 			}
@@ -66,7 +67,7 @@ public class Joueur
 		
 		for (Case caseP : caseOwn)
 		{
-			caseP.setCouleur(colorP);
+			caseP.setColor(colorP);
 		}
 	}
 	
