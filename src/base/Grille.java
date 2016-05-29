@@ -7,7 +7,6 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Grille
@@ -80,38 +79,21 @@ public class Grille
 	{
 		int x, y;
 		Group gridGroup = new Group();
-		Text text;
 		
 		for(x = 0; x < grille.length; x ++)
 		{
 			for(y = 0; y < grille[0].length; y ++)
 			{
-				Rectangle rectangle = new Rectangle();
-				
-				rectangle.setFill(grille[x][y].getColor());
+				Rectangle rectangle = new Rectangle(width / (grille.length + 2.5), height / (grille.length + 1));
 
-				rectangle.setX(width / (grille.length + 2.5) * (x + 0.5));
-				rectangle.setY(height / (grille.length + 1) * (y + 0.5));
-
-				rectangle.setWidth((width * 0.9) / (grille.length + 1));
-				rectangle.setHeight(height / (grille.length + 1));
+				rectangle.setX(rectangle.getWidth() * (x + 0.5));
+				rectangle.setY(rectangle.getHeight() * (y + 0.5));
 				
+				rectangle.setOpacity((grille[x][y].getJoueur() != null) ? 0.5 : 1);
+				rectangle.setFill(grille[x][y].getColor());				
 				rectangle.setStroke(Color.BLACK);
-				
-				if (grille[x][y].getJoueur() != null)
-				{
-					rectangle.setOpacity(0.8);
-					text = new Text(grille[x][y].getJoueur().getNom());
 
-				}
-				else
-				{
-					text = new Text("1");
-					rectangle.setOpacity(1);
-				}
-				text.setX(rectangle.getX());
-				text.setY(rectangle.getY());
-				gridGroup.getChildren().addAll(rectangle, text);
+				gridGroup.getChildren().add(rectangle);
 			}
 		}
 		
@@ -147,13 +129,11 @@ public class Grille
 		
 		for (i =  0; i < choosableColor.size(); i ++)
 		{
-			Rectangle rectangle = new Rectangle();
+			Rectangle rectangle = new Rectangle(width / (grille.length + 2.5), height / (grille.length + 1));
 			
 			rectangle.setX(width / (grille.length + 2.5) * (grille.length + 1));
 			rectangle.setY(height / (grille.length + 1) * (y + 0.5));
-
-			rectangle.setWidth((width * 0.9) / (grille.length + 1));
-			rectangle.setHeight(height / (grille.length + 1));
+			
 			rectangle.setFill(choosableColor.get(i));
 			rectangle.setStroke(Color.BLACK);			
 			
@@ -181,9 +161,9 @@ public class Grille
 	{
 		ArrayList<Case> caseOwn = joueurCourant.getCaseOwn();
 		
-		for (int z = 0; z < caseOwn.size(); z ++)
+		for (int i = 0; i < caseOwn.size(); i ++)
 		{
-			newCase(caseOwn.get(z), joueurCourant);
+			newCase(caseOwn.get(i), joueurCourant);
 		}
 	}
 	
