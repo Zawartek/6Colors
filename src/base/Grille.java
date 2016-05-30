@@ -89,7 +89,7 @@ public class Grille
 				rectangle.setX(rectangle.getWidth() * (x + 0.5));
 				rectangle.setY(rectangle.getHeight() * (y + 0.5));
 				
-				rectangle.setOpacity((grille[x][y].getJoueur() != null) ? 0.5 : 1);
+				rectangle.setOpacity((grille[x][y].getJoueur() != null) ? 0.7 : 1);
 				rectangle.setFill(grille[x][y].getColor());				
 				rectangle.setStroke(Color.BLACK);
 
@@ -189,6 +189,31 @@ public class Grille
 		if ((y + 1 < grille.length) && (getGrille()[x][y + 1].getJoueur() == null) && (getGrille()[x][y + 1].getColor().equals(joueurCourant.getColor())))
 		{
 			joueurCourant.assocJoueurCase(getGrille()[x][y + 1]);
+		}
+	}
+	
+	public void endGame (Joueur [] joueurs)
+	{
+		int nbCasePrise = 0;
+		int nbCaseJoueur;
+		Joueur premierJoueur = new Joueur("", getGrille()[0][0]);
+		Joueur secondJoueur = new Joueur("", getGrille()[0][0]);
+		
+		for (int i = 0; i < joueurs.length; i ++)
+		{
+			nbCaseJoueur = joueurs[i].getNbCase();
+			premierJoueur = (nbCaseJoueur > premierJoueur.getNbCase()) ? joueurs[i] : premierJoueur;
+			nbCasePrise += nbCaseJoueur;
+		}
+		
+		for (int i = 0; i < joueurs.length; i ++)
+		{
+			secondJoueur = ((joueurs[i].getNbCase() > secondJoueur.getNbCase()) && !(joueurs[i].equals(premierJoueur))) ? joueurs[i] : secondJoueur;
+		}
+		
+		if ((secondJoueur.getNbCase() + grille.length * grille.length - nbCasePrise) < premierJoueur.getNbCase())
+		{
+			System.out.println("C'est fini");
 		}
 	}
 }

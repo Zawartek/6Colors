@@ -76,4 +76,9 @@ public class Joueur
 		setCaseOwn(caseP);
 		caseP.setJoueur(this);
 	}
+	
+	public int getNbCase()
+	{
+		return this.getCaseOwn().size();
+	}
 }

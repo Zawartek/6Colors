@@ -17,7 +17,7 @@ public class Test extends Application
 
     public void start(Stage primaryStage)
     {
-    	/*primaryStage.setTitle("Six Couleurs");
+    	primaryStage.setTitle("Six Couleurs");
     	Group root =  new Group();
     	
     	Rectangle button1 = new Rectangle(150, 100);
@@ -35,23 +35,24 @@ public class Test extends Application
     	root.getChildren().addAll(button1, picRectangle);
     	
     	Rectangle button2 = new Rectangle(150, 100);
-    	button2.setX(Grille.width / 4 * 2 - button2.getWidth() / 2);
-    	button2.setY(Grille.height / 2 - button2.getHeight() / 2);
+    	button2.setLayoutX(Grille.width / 4 * 2 - button2.getWidth() / 2);
+    	button2.setLayoutY(Grille.height / 2 - button2.getHeight() / 2);
     	button2.setFill(Color.WHITE);
     	button2.setStroke(Color.BLACK);
     	
-    	Rectangle picRectangle2 = new Rectangle(75, 50);
+    	/*Rectangle picRectangle2 = new Rectangle(75, 50);
     	picRectangle2.setX(button2.getX() + picRectangle2.getWidth() / 2);
     	picRectangle2.setY(button2.getY() + picRectangle2.getHeight() / 2);
     	picRectangle2.setFill(Color.RED);
-    	picRectangle2.setStroke(Color.BLACK);
+    	picRectangle2.setStroke(Color.BLACK);*/
     	
-    	Polygon picHexa = new  Polygon(0, 13, 25, 0, 50, 13, 50, 36, 25, 50, 0, 36);
-    	picHexa.translateXProperty().add(picRectangle2.getX());
+    	Hexagon picHexa = new Hexagon(1.1);
+    	picHexa.setLayoutX(button2.getLayoutX() + button2.getWidth() / 2 - 27.5);
+    	picHexa.setLayoutY(button2.getLayoutY() + button2.getHeight() / 2 - 27.5);
     	picHexa.setFill(Color.RED);
     	picHexa.setStroke(Color.BLACK);
     	
-    	root.getChildren().addAll(picRectangle2, picHexa);
+    	root.getChildren().addAll(button2, picHexa);
     	
     	Rectangle button3 = new Rectangle(150, 100);
     	button3.setX(Grille.width / 4 * 3 - button3.getWidth() / 2);
@@ -59,14 +60,14 @@ public class Test extends Application
     	button3.setFill(Color.WHITE);
     	button3.setStroke(Color.BLACK);
     	
-    	root.getChildren().addAll(button2, button3);
+    	root.getChildren().add(button3);
     	
     	Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
     	primaryStage.setScene(scene);
-        primaryStage.show();*/
+        primaryStage.show();
        
     	
-    	primaryStage.setTitle("Six Couleurs");
+    	/*primaryStage.setTitle("Six Couleurs");
     	
         Grille grille =  new Grille();
     	grille.initGrid(10);
@@ -90,11 +91,12 @@ public class Test extends Application
     	}
     	Joueur joueurCourant = joueurs[indiceJoueur];
     	
-    	build (grille, joueurCourant, joueurs, primaryStage, indiceJoueur);
+    	build (grille, joueurCourant, joueurs, primaryStage, indiceJoueur);*/
     }
     
     public static void build (Grille grille, Joueur joueurCourant, Joueur [] joueurs, Stage primaryStage, int indiceJoueur)
     {
+    	grille.endGame(joueurs);
     	joueurCourant = joueurs[indiceJoueur];
     	Group gridGroup = grille.graphicalShow();
     	Group buttonGroup = grille.generateButton(joueurs, joueurCourant, primaryStage, indiceJoueur);
