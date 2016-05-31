@@ -20,47 +20,53 @@ public class Test extends Application
     	primaryStage.setTitle("Six Couleurs");
     	Group root =  new Group();
     	
-    	Rectangle button1 = new Rectangle(150, 100);
-    	button1.setX(Grille.width / 4 - button1.getWidth() / 2);
-    	button1.setY(Grille.height / 2 - button1.getHeight() / 2);
-    	button1.setFill(Color.WHITE);
-    	button1.setStroke(Color.BLACK);
+    	Rectangle btnCarre = new Rectangle(150, 100);
+    	btnCarre.setX(Grille.width / 4 - btnCarre.getWidth() / 2);
+    	btnCarre.setY(Grille.height / 2 - btnCarre.getHeight() / 2);
+    	btnCarre.setFill(Color.WHITE);
+    	btnCarre.setStroke(Color.BLACK);
     	
-    	Rectangle picRectangle = new Rectangle(75, 50);
-    	picRectangle.setX(button1.getX() + picRectangle.getWidth() / 2);
-    	picRectangle.setY(button1.getY() + picRectangle.getHeight() / 2);
-    	picRectangle.setFill(Color.RED);
-    	picRectangle.setStroke(Color.BLACK);
+    	Rectangle btnCarreImg = new Rectangle(75, 50);
+    	btnCarreImg.setX(btnCarre.getX() + btnCarreImg.getWidth() / 2);
+    	btnCarreImg.setY(btnCarre.getY() + btnCarreImg.getHeight() / 2);
+    	btnCarreImg.setFill(Color.RED);
+    	btnCarreImg.setStroke(Color.BLACK);
     	
-    	root.getChildren().addAll(button1, picRectangle);
+    	root.getChildren().addAll(btnCarre, btnCarreImg);
     	
-    	Rectangle button2 = new Rectangle(150, 100);
-    	button2.setLayoutX(Grille.width / 4 * 2 - button2.getWidth() / 2);
-    	button2.setLayoutY(Grille.height / 2 - button2.getHeight() / 2);
-    	button2.setFill(Color.WHITE);
-    	button2.setStroke(Color.BLACK);
+    	Rectangle btnHexa = new Rectangle(150, 100);
+    	btnHexa.setLayoutX(Grille.width / 4 * 2 - btnHexa.getWidth() / 2);
+    	btnHexa.setLayoutY(Grille.height / 2 - btnHexa.getHeight() / 2);
+    	btnHexa.setFill(Color.WHITE);
+    	btnHexa.setStroke(Color.BLACK);
     	
-    	/*Rectangle picRectangle2 = new Rectangle(75, 50);
-    	picRectangle2.setX(button2.getX() + picRectangle2.getWidth() / 2);
-    	picRectangle2.setY(button2.getY() + picRectangle2.getHeight() / 2);
-    	picRectangle2.setFill(Color.RED);
-    	picRectangle2.setStroke(Color.BLACK);*/
+    	Hexagon btnHexaImg = new Hexagon(1.1);
+    	btnHexaImg.setLayoutX(btnHexa.getLayoutX() + btnHexa.getWidth() / 2 - 25 * 1.1);
+    	btnHexaImg.setLayoutY(btnHexa.getLayoutY() + btnHexa.getHeight() / 2 - 25 * 1.1);
+    	btnHexaImg.setFill(Color.RED);
+    	btnHexaImg.setStroke(Color.BLACK);
     	
-    	Hexagon picHexa = new Hexagon(1.1);
-    	picHexa.setLayoutX(button2.getLayoutX() + button2.getWidth() / 2 - 27.5);
-    	picHexa.setLayoutY(button2.getLayoutY() + button2.getHeight() / 2 - 27.5);
-    	picHexa.setFill(Color.RED);
-    	picHexa.setStroke(Color.BLACK);
+    	root.getChildren().addAll(btnHexa, btnHexaImg);
     	
-    	root.getChildren().addAll(button2, picHexa);
+    	Rectangle btnRand = new Rectangle(150, 100);
+    	btnRand.setLayoutX(Grille.width / 4 * 3 - btnRand.getWidth() / 2);
+    	btnRand.setLayoutY(Grille.height / 2 - btnRand.getHeight() / 2);
+    	btnRand.setFill(Color.WHITE);
+    	btnRand.setStroke(Color.BLACK);
     	
-    	Rectangle button3 = new Rectangle(150, 100);
-    	button3.setX(Grille.width / 4 * 3 - button3.getWidth() / 2);
-    	button3.setY(Grille.height / 2 - button3.getHeight() / 2);
-    	button3.setFill(Color.WHITE);
-    	button3.setStroke(Color.BLACK);
+    	Rectangle btnRandImg1 = new Rectangle(50, 34);
+    	btnRandImg1.setLayoutX(btnRand.getLayoutX() + btnRand.getWidth() / 2 - btnRandImg1.getWidth());
+    	btnRandImg1.setLayoutY(btnRand.getLayoutY() + btnRand.getHeight() / 2 - btnRandImg1.getHeight() / 2);
+    	btnRandImg1.setFill(Color.RED);
+    	btnRandImg1.setStroke(Color.BLACK);
     	
-    	root.getChildren().add(button3);
+    	Hexagon btnRandImg2 = new Hexagon(0.7);
+    	btnRandImg2.setLayoutX(btnRand.getLayoutX() + btnRand.getWidth() / 2 - 25 * 0.7 + 20);
+    	btnRandImg2.setLayoutY(btnRand.getLayoutY() + btnRand.getHeight() / 2 - 25 * 0.7);
+    	btnRandImg2.setFill(Color.RED);
+    	btnRandImg2.setStroke(Color.BLACK);
+    	
+    	root.getChildren().addAll(btnRand, btnRandImg1, btnRandImg2);
     	
     	Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
     	primaryStage.setScene(scene);
