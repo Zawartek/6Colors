@@ -9,6 +9,7 @@ public class Joueur
 	private String nom;
 	private Color color;
 	private ArrayList<Case> caseOwn = new ArrayList<Case>();
+	private int type;
 	
 	public Joueur(String nomP, Case caseP)
 	{

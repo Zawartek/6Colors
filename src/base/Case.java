@@ -80,4 +80,39 @@ public class Case
 		
 		return color;
 	}
+	
+	public static ArrayList<Case> startingCase (Grille grille, int nbPlayer)
+	{
+		ArrayList<Case> startingCase = new ArrayList<Case>();
+		
+		switch (nbPlayer)
+		{
+			case 1:
+				startingCase.add(grille.getGrille()[0][0]);
+				break;
+			
+			case 2:
+				startingCase.add(grille.getGrille()[0][0]);
+				startingCase.add(grille.getGrille()[grille.getGrille().length - 1][grille.getGrille().length - 1]);
+				break;
+				
+			case 3:
+				startingCase.add(grille.getGrille()[0][0]);
+				startingCase.add(grille.getGrille()[0][grille.getGrille().length - 1]);
+				startingCase.add(grille.getGrille()[grille.getGrille().length - 1][grille.getGrille().length - 1]);
+				break;
+				
+			case 4:
+				startingCase.add(grille.getGrille()[0][0]);
+				startingCase.add(grille.getGrille()[0][grille.getGrille().length - 1]);
+				startingCase.add(grille.getGrille()[grille.getGrille().length - 1][grille.getGrille().length - 1]);
+				startingCase.add(grille.getGrille()[grille.getGrille().length - 1][0]);
+				break;
+
+			default:
+				break;
+		}
+		
+		return startingCase;
+	}
 }
