@@ -98,7 +98,7 @@ public class Case
 				
 			case 3:
 				startingCase.add(grille.getGrille()[0][0]);
-				startingCase.add(grille.getGrille()[0][grille.getGrille().length - 1]);
+				startingCase.add(grille.getGrille()[(grille.getGrille().length - 1) / 2][(grille.getGrille().length - 1) / 2]);
 				startingCase.add(grille.getGrille()[grille.getGrille().length - 1][grille.getGrille().length - 1]);
 				break;
 				

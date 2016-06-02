@@ -11,12 +11,15 @@ public class Joueur
 	private ArrayList<Case> caseOwn = new ArrayList<Case>();
 	private int type;
 	
-	public Joueur(String nomP, Case caseP)
+	public Joueur(String nomP, Case caseP, int typeP)
 	{
 		this.nom = nomP;
 		this.color = caseP.getColor();
 		assocJoueurCase(caseP);
+		this.type = typeP;
 	}
+
+	public Joueur() {}
 
 	public String getNom()
 	{
@@ -48,13 +51,22 @@ public class Joueur
 		this.caseOwn.add(caseOwnP);
 	}
 	
+	public int getType()
+	{
+		return type;
+	}
+
+	public void setType(int type)
+	{
+		this.type = type;
+	}
+
 	public void checkSameColor(Joueur [] joueurs)
 	{
 		for (Joueur joueurP : joueurs)
 		{
 			while ((joueurP != this) && (joueurP.getColor().equals(this.getColor())))
 			{
-				System.out.println(Grille.choosableColor(joueurs).size());
 				Color newColor = Case.randomColor(Grille.choosableColor(joueurs));
 				this.setColor(newColor);
 				this.majCaseColor(newColor);

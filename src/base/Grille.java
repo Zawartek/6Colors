@@ -5,8 +5,13 @@ import java.util.ArrayList;
 
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
 
 public class Grille
@@ -84,16 +89,25 @@ public class Grille
 		{
 			for(y = 0; y < grille[0].length; y ++)
 			{
+				StackPane rectangleSP = new StackPane();
+				
 				Rectangle rectangle = new Rectangle(width / (grille.length + 2.5), height / (grille.length + 1));
-
-				rectangle.setX(rectangle.getWidth() * (x + 0.5));
-				rectangle.setY(rectangle.getHeight() * (y + 0.5));
+				
+				rectangleSP.setLayoutX(rectangle.getWidth() * (x + 0.5));
+				rectangleSP.setLayoutY(rectangle.getHeight() * (y + 0.5));
 				
 				rectangle.setOpacity((grille[x][y].getJoueur() != null) ? 0.7 : 1);
 				rectangle.setFill(grille[x][y].getColor());				
 				rectangle.setStroke(Color.BLACK);
-
-				gridGroup.getChildren().add(rectangle);
+				
+				Text rectangleText = (grille[x][y].getJoueur() != null) ? new Text(grille[x][y].getJoueur().getNom()) : new Text();
+				rectangleText.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+				rectangleText.setBoundsType(TextBoundsType.VISUAL); 
+				rectangleText.setFill(Color.BLACK);
+				
+				rectangleSP.getChildren().addAll(rectangle, rectangleText);
+				
+				gridGroup.getChildren().add(rectangleSP);
 			}
 		}
 		
@@ -146,13 +160,40 @@ public class Grille
 				majCaseJoueur(joueurCourant);
 				
 				int newIndiceJoueur = (indiceJoueur + 1) % joueurs.length;
-				Test.build(this, joueurCourant, joueurs, primaryStage, newIndiceJoueur);
+				Game.build(this, joueurCourant, joueurs, primaryStage, newIndiceJoueur);
 	        });
 			
 			buttonGroup.getChildren().add(rectangle);
 			
 			y ++;
 		}
+		
+		StackPane btnJoueurCourantSP = new StackPane();
+    	
+    	Rectangle btnJoueurCourant = new Rectangle(width / (grille.length + 2.5), height / (grille.length + 1));
+    	btnJoueurCourant.setFill(Color.TRANSPARENT);
+    	
+    	Text btnJoueurCourantText = new Text(joueurCourant.getNom() + "");
+    	btnJoueurCourantText.setFont(Font.font("Arial", 25));
+    	btnJoueurCourantText.setBoundsType(TextBoundsType.VISUAL); 
+    	btnJoueurCourantText.setFill(Color.BLACK);
+    	
+    	btnJoueurCourantSP.setLayoutX(width / (grille.length + 2.5) * (grille.length + 1));
+    	btnJoueurCourantSP.setLayoutY(height / (grille.length + 1) * 7.5);
+    	btnJoueurCourantSP.getChildren().addAll(btnJoueurCourant, btnJoueurCourantText);
+    	
+    	buttonGroup.getChildren().add(btnJoueurCourantSP);
+		
+		Rectangle rectangle = new Rectangle(width / (grille.length + 2.5), height / (grille.length + 1));
+		
+		rectangle.setX(width / (grille.length + 2.5) * (grille.length + 1));
+		rectangle.setY(height / (grille.length + 1) * 8.5);
+		
+		rectangle.setFill(joueurCourant.getColor());
+		rectangle.setStroke(Color.BLACK);
+		rectangle.setOpacity(0.7);
+		
+		buttonGroup.getChildren().add(rectangle);
 		
 		return buttonGroup;
 	}
@@ -189,31 +230,6 @@ public class Grille
 		if ((y + 1 < grille.length) && (getGrille()[x][y + 1].getJoueur() == null) && (getGrille()[x][y + 1].getColor().equals(joueurCourant.getColor())))
 		{
 			joueurCourant.assocJoueurCase(getGrille()[x][y + 1]);
-		}
-	}
-	
-	public void endGame (Joueur [] joueurs)
-	{
-		int nbCasePrise = 0;
-		int nbCaseJoueur;
-		Joueur premierJoueur = new Joueur("", getGrille()[0][0]);
-		Joueur secondJoueur = new Joueur("", getGrille()[0][0]);
-		
-		for (int i = 0; i < joueurs.length; i ++)
-		{
-			nbCaseJoueur = joueurs[i].getNbCase();
-			premierJoueur = (nbCaseJoueur > premierJoueur.getNbCase()) ? joueurs[i] : premierJoueur;
-			nbCasePrise += nbCaseJoueur;
-		}
-		
-		for (int i = 0; i < joueurs.length; i ++)
-		{
-			secondJoueur = ((joueurs[i].getNbCase() > secondJoueur.getNbCase()) && !(joueurs[i].equals(premierJoueur))) ? joueurs[i] : secondJoueur;
-		}
-		
-		if ((secondJoueur.getNbCase() + grille.length * grille.length - nbCasePrise) < premierJoueur.getNbCase())
-		{
-			System.out.println("C'est fini");
 		}
 	}
 }
