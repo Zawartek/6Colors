@@ -13,7 +13,7 @@ public class Game
     {
     	int nbJoueurs = nbHumains + nbIA;
     	Grille grille =  new Grille();
-    	grille.initGrid(13);
+    	grille.initGrid(6);
     	
     	Joueur joueurs [] =  new Joueur [nbJoueurs];
     	
@@ -42,7 +42,11 @@ public class Game
 	
 	public static void build (Grille grille, Joueur joueurCourant, Joueur [] joueurs, Stage primaryStage, int indiceJoueur)
     {
-    	endGame(joueurs, grille);
+    	if(endGame(joueurs, grille, primaryStage))
+    	{
+    		return;
+    	}
+    	
     	joueurCourant = joueurs[indiceJoueur];
     	
     	if (joueurCourant.getType() == 0)
@@ -71,7 +75,7 @@ public class Game
     	}
     }
 	
-	public static void endGame (Joueur [] joueurs, Grille grille)
+	public static boolean endGame (Joueur [] joueurs, Grille grille, Stage primaryStage)
 	{
 		int nbCaseJoueur, nbCaseRestante, nbCasePrise = 0;
 		
@@ -94,7 +98,10 @@ public class Game
 		
 		if (((secondJoueur.getNbCase() + nbCaseRestante) < premierJoueur.getNbCase()) || nbCaseRestante == 0)
 		{
-			System.out.println("C'est fini");
+			Menu.affichageEcranFin(joueurs, premierJoueur, secondJoueur, primaryStage);
+			return true;
 		}
+		
+		return false;
 	}
 }

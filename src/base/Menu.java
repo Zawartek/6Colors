@@ -18,7 +18,7 @@ public class Menu
     public static int nbIA = 1;
     public static int typeGrille = 0;
     
-	public static void affichageMenu (Stage primaryStage)
+	public static void affichageEcranDebut (Stage primaryStage)
 	{
 		primaryStage.setTitle("Six Couleurs");
 		Group root =  new Group();
@@ -535,4 +535,56 @@ public class Menu
     		pane.setDisable(true);
     	}
     }
+	public static void affichageEcranFin (Joueur [] joueurs, Joueur premierJoueur, Joueur secondJoueur, Stage primaryStage)
+	{
+		System.out.println("entré");
+		primaryStage.setTitle("Six Couleurs");
+		Group root = new Group();
+		
+		StackPane btnTitleSP = new StackPane();
+		
+		Rectangle btnTitle = new Rectangle(Grille.width, 100);
+		btnTitle.setFill(Color.TRANSPARENT);
+		
+		Text btnTitleText = new Text("Partie terminée");
+		btnTitleText.setFont(Font.font("Arial", 60));
+		btnTitleText.setBoundsType(TextBoundsType.VISUAL); 
+		btnTitleText.setFill(Color.BLACK);
+		
+		btnTitleSP.setLayoutX(Grille.width / 2 - btnTitle.getWidth() / 2);
+		btnTitleSP.setLayoutY(Grille.height / 7 - btnTitle.getHeight() / 2);
+		btnTitleSP.getChildren().addAll(btnTitle, btnTitleText);
+		
+		root.getChildren().add(btnTitleSP);
+		
+		StackPane btnVictoireSP = new StackPane();
+		
+		Rectangle btnVictoire = new Rectangle(Grille.width, 100);
+		btnVictoire.setFill(Color.TRANSPARENT);
+		
+		Text btnVictoireText;
+		
+		if (premierJoueur.getCaseOwn() == secondJoueur.getCaseOwn())
+		{
+			btnVictoireText = new Text(premierJoueur.getNom() + " et " + secondJoueur.getNom() + " ont gagné ! :)");
+		}
+		else
+		{
+			btnVictoireText = new Text(premierJoueur.getNom() + " a gagné ! :)");
+		}
+		
+		btnVictoireText.setFont(Font.font("Arial", 60));
+		btnVictoireText.setBoundsType(TextBoundsType.VISUAL); 
+		btnVictoireText.setFill(Color.BLACK);
+		
+		btnVictoireSP.setLayoutX(Grille.width / 2 - btnVictoire.getWidth() / 2);
+		btnVictoireSP.setLayoutY(Grille.height / 7 * 2 - btnVictoire.getHeight() / 2);
+		btnVictoireSP.getChildren().addAll(btnVictoire, btnVictoireText);
+		
+		root.getChildren().add(btnVictoireSP);
+		
+		Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
+		primaryStage.setScene(scene);
+	    primaryStage.show();
+	}
 }

@@ -13,6 +13,6 @@ public class Test extends Application
     public void start(Stage primaryStage)
     {
     	primaryStage.setTitle("Six Couleurs");
-    	Menu.affichageMenu(primaryStage);
+    	Menu.affichageEcranDebut(primaryStage);
     }
 }
