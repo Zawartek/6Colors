@@ -8,12 +8,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game
-{
-	public static void initGame (int nbHumains, int nbIA, int typeGrille, int tailleGrille, Stage primaryStage)
+{	
+	public static void initGame (int nbHumains, int nbIA, int tailleGrille, Stage primaryStage)
     {
     	int nbJoueurs = nbHumains + nbIA;
     	Grille grille =  new Grille();
     	grille.initGrid(tailleGrille);
+    	
+    	Menu.typeGrille = (Menu.typeGrille == 2) ? (int)(Math.random() * 2) : Menu.typeGrille;
+    	grille.setTypeGrille(Menu.typeGrille);
     	
     	Joueur joueurs [] =  new Joueur [nbJoueurs];
     	
@@ -21,7 +24,14 @@ public class Game
     	
     	for (int i = 0; i < nbJoueurs; i ++)
     	{
-    		joueurs[i] = new Joueur("J" + (i + 1), startingCase.get(i), (i < nbHumains) ? 1 : 0);
+    		if (i < nbHumains)
+    		{
+    			joueurs[i] = new Joueur("J" + (i + 1), startingCase.get(i), 1);
+    		}
+    		else
+    		{
+    			joueurs[i] = new Joueur("O" + (i + 1), startingCase.get(i), 0);
+    		}
     	}
     	
     	for (int x = 0; x < joueurs.length; x++)
@@ -31,7 +41,14 @@ public class Game
     	
     	for (int q = 0; q < joueurs.length; q ++)
     	{
-    		grille.majCaseJoueur(joueurs[q]);
+    		if (grille.getTypeGrille() == 0)
+    		{
+    			grille.captureSquare(joueurs[q]);
+    		}
+    		else
+    		{
+    			grille.captureHexa(joueurs[q]);
+    		}    		
     	}
     	
     	int indiceJoueur = 0;
@@ -51,19 +68,45 @@ public class Game
     	
     	if (joueurCourant.getType() == 0)
     	{
+    		Color chosenColor;
     		
-    		Color chosenColor = IntelligenceA.BasicIA(joueurs);
+    		if (joueurs.length % 2 == 1)
+    		{
+    			chosenColor = IntelligenceA.BasicIA(joueurs);
+    		}
+    		else
+    		{
+    			chosenColor = IntelligenceA.NormalIA(joueurCourant, joueurs, grille);
+    		}
+    		
     		joueurCourant.setColor(chosenColor);
 			joueurCourant.majCaseColor(chosenColor);
 			
-			grille.majCaseJoueur(joueurCourant);
+			if (grille.getTypeGrille() == 0)
+			{
+				grille.captureSquare(joueurCourant);
+			}
+			else
+			{
+				grille.captureHexa(joueurCourant);
+			}
 			
 			int newIndiceJoueur = (indiceJoueur + 1) % joueurs.length;
 			build(grille, joueurCourant, joueurs, primaryStage, newIndiceJoueur);
     	}
     	else
     	{
-	    	Group gridGroup = grille.graphicalShow();
+    		Group gridGroup;
+    		
+    		if (grille.getTypeGrille() == 0)
+			{
+    			gridGroup = grille.graphicalShowSquare();
+			}
+			else
+			{
+				gridGroup = grille.graphicalShowHexa();
+			}
+    		
 	    	Group buttonGroup = grille.generateButton(joueurs, joueurCourant, primaryStage, indiceJoueur);
 	    	
 	    	Group root =  new Group();

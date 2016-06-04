@@ -1,8 +1,9 @@
 package base;
 
+import java.text.DecimalFormat;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -68,11 +69,14 @@ public class Menu
 		Rectangle btn1Player = new Rectangle(120, 80);    	
 		btn1Player.setFill(Color.WHITE);
 		btn1Player.setStroke(selectedStroke);
+		btn1Player.setArcWidth(10);
+		btn1Player.setArcHeight(10);
 		
 		Text btn1PlayerText = new Text("1");
 		btn1PlayerText.setFont(Font.font("Arial", 50));
 		btn1PlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btn1PlayerText.setFill(selectedFill);
+		btn1PlayerText.setStroke(Color.BLACK);
 		
 		btn1PlayerSP.setLayoutX(Grille.width / 5 - btn1Player.getWidth() / 2);
 		btn1PlayerSP.setLayoutY(Grille.height / 6 * 2 - btn1Player.getHeight() / 2);
@@ -83,6 +87,8 @@ public class Menu
 		Rectangle btn2Player = new Rectangle(120, 80);    	
 		btn2Player.setFill(Color.WHITE);
 		btn2Player.setStroke(defaultStroke);
+		btn2Player.setArcWidth(10);
+		btn2Player.setArcHeight(10);
 		
 		Text btn2PlayerText = new Text("2");
 		btn2PlayerText.setFont(Font.font("Arial", 50));
@@ -99,6 +105,8 @@ public class Menu
 		Rectangle btn3Player = new Rectangle(120, 80);    	
 		btn3Player.setFill(Color.WHITE);
 		btn3Player.setStroke(defaultStroke);
+		btn3Player.setArcWidth(10);
+		btn3Player.setArcHeight(10);
 		
 		Text btn3PlayerText = new Text("3");
 		btn3PlayerText.setFont(Font.font("Arial", 50));
@@ -115,6 +123,8 @@ public class Menu
 		Rectangle btn4Player = new Rectangle(120, 80);    	
 		btn4Player.setFill(Color.WHITE);
 		btn4Player.setStroke(defaultStroke);
+		btn4Player.setArcWidth(10);
+		btn4Player.setArcHeight(10);
 		
 		Text btn4PlayerText = new Text("4");
 		btn4PlayerText.setFont(Font.font("Arial", 50));
@@ -130,7 +140,6 @@ public class Menu
 		
 		
 		// Partie nb IA
-		
 		StackPane btnIASP = new StackPane();
 		
 		Rectangle btnIA = new Rectangle(Grille.width, 100);
@@ -152,6 +161,8 @@ public class Menu
 		Rectangle btn0IA = new Rectangle(120, 80);    	
 		btn0IA.setFill(Color.WHITE);
 		btn0IA.setStroke(defaultStroke);
+		btn0IA.setArcWidth(10);
+		btn0IA.setArcHeight(10);
 		
 		Text btn0IAText = new Text("0");
 		btn0IAText.setFont(Font.font("Arial", 50));
@@ -170,6 +181,8 @@ public class Menu
 		Rectangle btn1IA = new Rectangle(120, 80);    	
 		btn1IA.setFill(Color.WHITE);
 		btn1IA.setStroke(selectedStroke);
+		btn1IA.setArcWidth(10);
+		btn1IA.setArcHeight(10);
 		
 		Text btn1IAText = new Text("1");
 		btn1IAText.setFont(Font.font("Arial", 50));
@@ -186,6 +199,8 @@ public class Menu
 		Rectangle btn2IA = new Rectangle(120, 80);    	
 		btn2IA.setFill(Color.WHITE);
 		btn2IA.setStroke(defaultStroke);
+		btn2IA.setArcWidth(10);
+		btn2IA.setArcHeight(10);
 		
 		Text btn2IAText = new Text("2");
 		btn2IAText.setFont(Font.font("Arial", 50));
@@ -202,6 +217,8 @@ public class Menu
 		Rectangle btn3IA = new Rectangle(120, 80);    	
 		btn3IA.setFill(Color.WHITE);
 		btn3IA.setStroke(defaultStroke);
+		btn3IA.setArcWidth(10);
+		btn3IA.setArcHeight(10);
 		
 		Text btn3IAText = new Text("3");
 		btn3IAText.setFont(Font.font("Arial", 50));
@@ -421,6 +438,8 @@ public class Menu
 		Rectangle btnCarre = new Rectangle(120, 80);
 		btnCarre.setFill(Color.WHITE);
 		btnCarre.setStroke(selectedStroke);
+		btnCarre.setArcWidth(10);
+		btnCarre.setArcHeight(10);
 		
 		Rectangle btnCarreImg = new Rectangle(60, 40);
 		btnCarreImg.setFill(selectedFill);
@@ -434,6 +453,8 @@ public class Menu
 		Rectangle btnHexa = new Rectangle(120, 80);
 		btnHexa.setFill(Color.WHITE);
 		btnHexa.setStroke(defaultStroke);
+		btnHexa.setArcWidth(10);
+		btnHexa.setArcHeight(10);
 		
 		Hexagon btnHexaImg = new Hexagon(1);
 		btnHexaImg.setFill(defaultFill);
@@ -448,6 +469,8 @@ public class Menu
 		
 		btnRand.setFill(Color.WHITE);
 		btnRand.setStroke(defaultStroke);
+		btnRand.setArcWidth(10);
+		btnRand.setArcHeight(10);
 		
 		btnRandSP.setLayoutX(Grille.width / 4 * 3 - btnRand.getWidth() / 2);
 		btnRandSP.setLayoutY(Grille.height / 6 * 4 - btnRand.getHeight() / 2);	
@@ -533,7 +556,7 @@ public class Menu
 		Rectangle btnTailleGrille = new Rectangle(Grille.width, 100);
 		btnTailleGrille.setFill(Color.TRANSPARENT);
 		
-		Text btnTailleGrilleText = new Text("Choississez une taille de grille :");
+		Text btnTailleGrilleText = new Text("Choississez la taille de la grille :");
 		btnTailleGrilleText.setFont(Font.font("Comic sans ms", 35));
 		btnTailleGrilleText.setBoundsType(TextBoundsType.VISUAL); 
 		btnTailleGrilleText.setFill(Color.BLACK);
@@ -565,6 +588,8 @@ public class Menu
 		Rectangle btnTaillePlus = new Rectangle(40, 40);
 		btnTaillePlus.setFill(Color.WHITE);
 		btnTaillePlus.setStroke(Color.BLACK);
+		btnTaillePlus.setArcWidth(10);
+		btnTaillePlus.setArcHeight(10);
 		
 		Text btnTaillePlusText = new Text("+");
 		btnTaillePlusText.setFont(Font.font("Comic sans ms", 35));
@@ -582,6 +607,8 @@ public class Menu
 		Rectangle btnTailleMoins = new Rectangle(40, 40);
 		btnTailleMoins.setFill(Color.WHITE);
 		btnTailleMoins.setStroke(Color.BLACK);
+		btnTailleMoins.setArcWidth(10);
+		btnTailleMoins.setArcHeight(10);
 		
 		Text btnTailleMoinsText = new Text("-");
 		btnTailleMoinsText.setFont(Font.font("Comic sans ms", 35));
@@ -613,7 +640,7 @@ public class Menu
 		
 		btnTailleMoinsSP.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
 		{
-			if (tailleGrille - 1 >= 6)
+			if (tailleGrille - 1 >= 9)
 			{
 				tailleGrille --;
 				btnTaillePlusText.setFill(Color.BLACK);
@@ -629,11 +656,13 @@ public class Menu
 	    });
 		
 		// Bouton de démarrage
-		StackPane btnStartStack = new StackPane();
+		StackPane btnStartSP = new StackPane();
 		
 		Rectangle btnStart = new Rectangle(200, 100);
 		btnStart.setFill(Color.WHITE);
 		btnStart.setStroke(Color.BLACK);
+		btnStart.setArcWidth(10);
+		btnStart.setArcHeight(10);
 		
 		Text btnStartText = new Text("Go !");
 		btnStartText.setFont(Font.font("Comic sans ms", 50));
@@ -641,16 +670,15 @@ public class Menu
 		btnStartText.setFill(Color.BLACK);
 		btnStartText.setStroke(Color.BLACK);
 		
-		btnStartStack.setLayoutX(Grille.width / 2 - btnStart.getWidth() / 2);
-		btnStartStack.setLayoutY(Grille.height / 6 * 5.3 - btnStart.getHeight() / 2);
-		btnStartStack.getChildren().addAll(btnStart, btnStartText);
+		btnStartSP.setLayoutX(Grille.width / 2 - btnStart.getWidth() / 2);
+		btnStartSP.setLayoutY(Grille.height / 6 * 5.3 - btnStart.getHeight() / 2);
+		btnStartSP.getChildren().addAll(btnStart, btnStartText);
 		
-		root.getChildren().add(btnStartStack);
+		root.getChildren().add(btnStartSP);
 		
-		btnStartStack.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
+		btnStartSP.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
 		{
-			System.out.println(nbHumains+" "+ nbIA+" "+typeGrille);
-			Game.initGame (nbHumains, nbIA, typeGrille, tailleGrille, primaryStage);
+			Game.initGame (nbHumains, nbIA, tailleGrille, primaryStage);
 	    });
 				
 		Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
@@ -673,9 +701,12 @@ public class Menu
     }
 	public static void affichageEcranFin (Joueur [] joueurs, Joueur premierJoueur, Joueur secondJoueur, Stage primaryStage)
 	{
-		System.out.println("entré");
 		primaryStage.setTitle("Six Couleurs");
 		Group root = new Group();
+		
+		DecimalFormat f = new DecimalFormat();
+		f.setMaximumFractionDigits(1);
+		f.setMinimumFractionDigits(1);
 		
 		StackPane btnTitleSP = new StackPane();
 		
@@ -702,11 +733,11 @@ public class Menu
 		
 		if (premierJoueur.getCaseOwn() == secondJoueur.getCaseOwn())
 		{
-			btnVictoireText = new Text(premierJoueur.getNom() + " et " + secondJoueur.getNom() + " ont gagné ! :)");
+			btnVictoireText = new Text(premierJoueur.getNom() + " et " + secondJoueur.getNom() + " ont gagné !");
 		}
 		else
 		{
-			btnVictoireText = new Text(premierJoueur.getNom() + " a gagné ! :)");
+			btnVictoireText = new Text(premierJoueur.getNom() + " a gagné !");
 		}
 		
 		btnVictoireText.setFont(Font.font("Arial", 60));
@@ -718,6 +749,51 @@ public class Menu
 		btnVictoireSP.getChildren().addAll(btnVictoire, btnVictoireText);
 		
 		root.getChildren().add(btnVictoireSP);
+		
+		for (int i = 0; i < joueurs.length; i ++)
+		{
+			StackPane btnPourcentageJoueurSP = new StackPane();
+			
+			Rectangle btnPourcentageJoueur = new Rectangle(Grille.width, 100);
+			btnPourcentageJoueur.setFill(Color.TRANSPARENT);
+			
+			Text btnPourcentageJoueurText = new Text(joueurs[i].getNom() + " : " + f.format((joueurs[i].getNbCase() / (double) (tailleGrille * tailleGrille)) * 100) + " %");
+			btnPourcentageJoueurText.setFont(Font.font("Arial", 40));
+			btnPourcentageJoueurText.setBoundsType(TextBoundsType.VISUAL); 
+			btnPourcentageJoueurText.setFill(Color.BLACK);
+			
+			btnPourcentageJoueurSP.setLayoutX(Grille.width / 2 - btnPourcentageJoueur.getWidth() / 2);
+			btnPourcentageJoueurSP.setLayoutY(Grille.height / 7 * (3 + 0.5 * i) - btnPourcentageJoueur.getHeight() / 2);
+			btnPourcentageJoueurSP.getChildren().addAll(btnPourcentageJoueur, btnPourcentageJoueurText);
+			
+			root.getChildren().add(btnPourcentageJoueurSP);
+		}
+		
+		// Bouton de redémarrage de la partie avec les mêmes paramètres
+		StackPane btnRestartSP = new StackPane();
+		
+		Rectangle btnRestart = new Rectangle(250, 100);
+		btnRestart.setFill(Color.WHITE);
+		btnRestart.setStroke(Color.BLACK);
+		btnRestart.setArcWidth(10);
+		btnRestart.setArcHeight(10);
+		
+		Text btnRestartText = new Text("Relancer");
+		btnRestartText.setFont(Font.font("Comic sans ms", 50));
+		btnRestartText.setBoundsType(TextBoundsType.VISUAL); 
+		btnRestartText.setFill(Color.BLACK);
+		btnRestartText.setStroke(Color.BLACK);
+				
+		btnRestartSP.setLayoutX(Grille.width / 2 - btnRestart.getWidth() / 2);
+		btnRestartSP.setLayoutY(Grille.height / 6 * 5 - btnRestart.getHeight() / 2);
+		btnRestartSP.getChildren().addAll(btnRestart, btnRestartText);
+				
+		root.getChildren().add(btnRestartSP);
+				
+		btnRestartSP.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
+		{
+			Game.initGame (nbHumains, nbIA, tailleGrille, primaryStage);
+		});
 		
 		Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
 		primaryStage.setScene(scene);
