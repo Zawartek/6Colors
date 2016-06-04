@@ -2,6 +2,7 @@ package base;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -17,6 +18,7 @@ public class Menu
     public static int nbHumains = 1;
     public static int nbIA = 1;
     public static int typeGrille = 0;
+    public static int tailleGrille = 13;
     
 	public static void affichageEcranDebut (Stage primaryStage)
 	{
@@ -35,7 +37,7 @@ public class Menu
 		btnTitle.setFill(Color.TRANSPARENT);
 		
 		Text btnTitleText = new Text("Veuillez choisir les paramètres de jeu :");
-		btnTitleText.setFont(Font.font("Arial", 60));
+		btnTitleText.setFont(Font.font("Comic sans ms", 50));
 		btnTitleText.setBoundsType(TextBoundsType.VISUAL); 
 		btnTitleText.setFill(Color.BLACK);
 		
@@ -51,27 +53,26 @@ public class Menu
 		btnPlayer.setFill(Color.TRANSPARENT);
 		
 		Text btnPlayerText = new Text("Choisissez le nombre de joueurs :");
-		btnPlayerText.setFont(Font.font("Arial", 40));
+		btnPlayerText.setFont(Font.font("Comic sans ms", 35));
 		btnPlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btnPlayerText.setFill(Color.BLACK);
 		
 		btnPlayerSP.setLayoutX(Grille.width / 2 - btnPlayer.getWidth() / 2);
-		btnPlayerSP.setLayoutY(Grille.height / 6 * 1.4 - btnPlayer.getHeight() / 2);
+		btnPlayerSP.setLayoutY(Grille.height / 6 * 1.5 - btnPlayer.getHeight() / 2);
 		btnPlayerSP.getChildren().addAll(btnPlayer, btnPlayerText);
 		
 		root.getChildren().add(btnPlayerSP);
 		
 		StackPane btn1PlayerSP = new StackPane();
 		
-		Rectangle btn1Player = new Rectangle(150, 100);    	
+		Rectangle btn1Player = new Rectangle(120, 80);    	
 		btn1Player.setFill(Color.WHITE);
 		btn1Player.setStroke(selectedStroke);
 		
 		Text btn1PlayerText = new Text("1");
-		btn1PlayerText.setFont(Font.font("Arial", 80));
+		btn1PlayerText.setFont(Font.font("Arial", 50));
 		btn1PlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btn1PlayerText.setFill(selectedFill);
-		btn1PlayerText.setStroke(Color.BLACK);
 		
 		btn1PlayerSP.setLayoutX(Grille.width / 5 - btn1Player.getWidth() / 2);
 		btn1PlayerSP.setLayoutY(Grille.height / 6 * 2 - btn1Player.getHeight() / 2);
@@ -79,12 +80,12 @@ public class Menu
 		
 		StackPane btn2PlayerSP = new StackPane();
 		
-		Rectangle btn2Player = new Rectangle(150, 100);    	
+		Rectangle btn2Player = new Rectangle(120, 80);    	
 		btn2Player.setFill(Color.WHITE);
 		btn2Player.setStroke(defaultStroke);
 		
 		Text btn2PlayerText = new Text("2");
-		btn2PlayerText.setFont(Font.font("Arial", 80));
+		btn2PlayerText.setFont(Font.font("Arial", 50));
 		btn2PlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btn2PlayerText.setFill(defaultFill);
 		btn2PlayerText.setStroke(Color.BLACK);
@@ -95,12 +96,12 @@ public class Menu
 		
 		StackPane btn3PlayerSP = new StackPane();
 		
-		Rectangle btn3Player = new Rectangle(150, 100);    	
+		Rectangle btn3Player = new Rectangle(120, 80);    	
 		btn3Player.setFill(Color.WHITE);
 		btn3Player.setStroke(defaultStroke);
 		
 		Text btn3PlayerText = new Text("3");
-		btn3PlayerText.setFont(Font.font("Arial", 80));
+		btn3PlayerText.setFont(Font.font("Arial", 50));
 		btn3PlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btn3PlayerText.setFill(defaultFill);
 		btn3PlayerText.setStroke(Color.BLACK);
@@ -111,12 +112,12 @@ public class Menu
 		
 		StackPane btn4PlayerSP = new StackPane();
 		
-		Rectangle btn4Player = new Rectangle(150, 100);    	
+		Rectangle btn4Player = new Rectangle(120, 80);    	
 		btn4Player.setFill(Color.WHITE);
 		btn4Player.setStroke(defaultStroke);
 		
 		Text btn4PlayerText = new Text("4");
-		btn4PlayerText.setFont(Font.font("Arial", 80));
+		btn4PlayerText.setFont(Font.font("Arial", 50));
 		btn4PlayerText.setBoundsType(TextBoundsType.VISUAL); 
 		btn4PlayerText.setFill(defaultFill);
 		btn4PlayerText.setStroke(Color.BLACK);
@@ -129,14 +130,31 @@ public class Menu
 		
 		
 		// Partie nb IA
+		
+		StackPane btnIASP = new StackPane();
+		
+		Rectangle btnIA = new Rectangle(Grille.width, 100);
+		btnIA.setFill(Color.TRANSPARENT);
+		
+		Text btnIAText = new Text("Choisissez le nombre de d'ordinateurs :");
+		btnIAText.setFont(Font.font("Comic sans ms", 35));
+		btnIAText.setBoundsType(TextBoundsType.VISUAL); 
+		btnIAText.setFill(Color.BLACK);
+		
+		btnIASP.setLayoutX(Grille.width / 2 - btnIA.getWidth() / 2);
+		btnIASP.setLayoutY(Grille.height / 6 * 2.5 - btnIA.getHeight() / 2);
+		btnIASP.getChildren().addAll(btnIA, btnIAText);
+		
+		root.getChildren().add(btnIASP);
+		
 		StackPane btn0IASP = new StackPane();
 		
-		Rectangle btn0IA = new Rectangle(150, 100);    	
+		Rectangle btn0IA = new Rectangle(120, 80);    	
 		btn0IA.setFill(Color.WHITE);
 		btn0IA.setStroke(defaultStroke);
 		
 		Text btn0IAText = new Text("0");
-		btn0IAText.setFont(Font.font("Arial", 80));
+		btn0IAText.setFont(Font.font("Arial", 50));
 		btn0IAText.setBoundsType(TextBoundsType.VISUAL); 
 		btn0IAText.setFill(defaultFill);
 		btn0IAText.setStroke(Color.BLACK);
@@ -149,12 +167,12 @@ public class Menu
 		
 		StackPane btn1IASP = new StackPane();
 		
-		Rectangle btn1IA = new Rectangle(150, 100);    	
+		Rectangle btn1IA = new Rectangle(120, 80);    	
 		btn1IA.setFill(Color.WHITE);
 		btn1IA.setStroke(selectedStroke);
 		
 		Text btn1IAText = new Text("1");
-		btn1IAText.setFont(Font.font("Arial", 80));
+		btn1IAText.setFont(Font.font("Arial", 50));
 		btn1IAText.setBoundsType(TextBoundsType.VISUAL); 
 		btn1IAText.setFill(selectedFill);
 		btn1IAText.setStroke(Color.BLACK);
@@ -165,12 +183,12 @@ public class Menu
 		
 		StackPane btn2IASP = new StackPane();
 		
-		Rectangle btn2IA = new Rectangle(150, 100);    	
+		Rectangle btn2IA = new Rectangle(120, 80);    	
 		btn2IA.setFill(Color.WHITE);
 		btn2IA.setStroke(defaultStroke);
 		
 		Text btn2IAText = new Text("2");
-		btn2IAText.setFont(Font.font("Arial", 80));
+		btn2IAText.setFont(Font.font("Arial", 50));
 		btn2IAText.setBoundsType(TextBoundsType.VISUAL); 
 		btn2IAText.setFill(defaultFill);
 		btn2IAText.setStroke(Color.BLACK);
@@ -181,12 +199,12 @@ public class Menu
 		
 		StackPane btn3IASP = new StackPane();
 		
-		Rectangle btn3IA = new Rectangle(150, 100);    	
+		Rectangle btn3IA = new Rectangle(120, 80);    	
 		btn3IA.setFill(Color.WHITE);
 		btn3IA.setStroke(defaultStroke);
 		
 		Text btn3IAText = new Text("3");
-		btn3IAText.setFont(Font.font("Arial", 80));
+		btn3IAText.setFont(Font.font("Arial", 50));
 		btn3IAText.setBoundsType(TextBoundsType.VISUAL); 
 		btn3IAText.setFill(defaultFill);
 		btn3IAText.setStroke(Color.BLACK);
@@ -379,16 +397,32 @@ public class Menu
 	    });
 		
 		// Menu choix de la grille
+		StackPane btnGrilleSP = new StackPane();
+		
+		Rectangle btnGrille = new Rectangle(Grille.width, 100);
+		btnGrille.setFill(Color.TRANSPARENT);
+		
+		Text btnGrilleText = new Text("Choisissez le type de grille :");
+		btnGrilleText.setFont(Font.font("Comic sans ms", 35));
+		btnGrilleText.setBoundsType(TextBoundsType.VISUAL); 
+		btnGrilleText.setFill(Color.BLACK);
+		
+		btnGrilleSP.setLayoutX(Grille.width / 2 - btnGrille.getWidth() / 2);
+		btnGrilleSP.setLayoutY(Grille.height / 6 * 3.5 - btnGrille.getHeight() / 2);
+		btnGrilleSP.getChildren().addAll(btnGrille, btnGrilleText);
+		
+		root.getChildren().add(btnGrilleSP);
+		
+		
 		StackPane btnCarreSP = new StackPane();
 		StackPane btnHexaSP = new StackPane();
 		StackPane btnRandSP = new StackPane();
 		
-		
-		Rectangle btnCarre = new Rectangle(150, 100);
+		Rectangle btnCarre = new Rectangle(120, 80);
 		btnCarre.setFill(Color.WHITE);
 		btnCarre.setStroke(selectedStroke);
 		
-		Rectangle btnCarreImg = new Rectangle(75, 50);
+		Rectangle btnCarreImg = new Rectangle(60, 40);
 		btnCarreImg.setFill(selectedFill);
 		btnCarreImg.setStroke(Color.BLACK);
 		
@@ -397,11 +431,11 @@ public class Menu
 		btnCarreSP.setLayoutY(Grille.height / 6 * 4 - btnCarre.getHeight() / 2);
 		
 		
-		Rectangle btnHexa = new Rectangle(150, 100);
+		Rectangle btnHexa = new Rectangle(120, 80);
 		btnHexa.setFill(Color.WHITE);
 		btnHexa.setStroke(defaultStroke);
 		
-		Hexagon btnHexaImg = new Hexagon(1.1);
+		Hexagon btnHexaImg = new Hexagon(1);
 		btnHexaImg.setFill(defaultFill);
 		btnHexaImg.setStroke(Color.BLACK);
 		
@@ -410,7 +444,7 @@ public class Menu
 		btnHexaSP.setLayoutY(Grille.height / 6 * 4 - btnHexa.getHeight() / 2);
 		
 		
-		Rectangle btnRand = new Rectangle(150, 100);
+		Rectangle btnRand = new Rectangle(120, 80);
 		
 		btnRand.setFill(Color.WHITE);
 		btnRand.setStroke(defaultStroke);
@@ -420,21 +454,21 @@ public class Menu
 		
 		Group btnRandGroupImg = new Group();
 		
-		Rectangle btnRandImg1 = new Rectangle(40, 33);
-		btnRandImg1.setLayoutX(btnRand.getWidth() / 2 - btnRandImg1.getWidth() - 15);
-		btnRandImg1.setLayoutY(btnRand.getHeight() / 2 - btnRandImg1.getHeight() / 2 - 12);
+		Rectangle btnRandImg1 = new Rectangle(30, 25);
+		btnRandImg1.setLayoutX(btnRand.getWidth() / 2 - btnRandImg1.getWidth());
+		btnRandImg1.setLayoutY(btnRand.getHeight() / 2 - btnRandImg1.getHeight() / 2 - 10);
 		btnRandImg1.setFill(defaultFill);
 		btnRandImg1.setStroke(Color.BLACK);
 		
-		Polygon btnRandImg2 = new Polygon(0, 80, 4, 80, 10, 0, 6, 0);
-		btnRandImg2.setLayoutX(btnRand.getWidth() / 2 - 5);
-		btnRandImg2.setLayoutY(btnRand.getHeight() / 2 - 40);
+		Polygon btnRandImg2 = new Polygon(0, 60, 4, 60, 10, 0, 6, 0);
+		btnRandImg2.setLayoutX(btnRand.getWidth() / 2 + 10);
+		btnRandImg2.setLayoutY(btnRand.getHeight() / 2 - 30);
 		btnRandImg2.setFill(defaultFill);
 		btnRandImg2.setStroke(Color.BLACK);
 		
-		Hexagon btnRandImg3 = new Hexagon(0.7);
-		btnRandImg3.setLayoutX(btnRand.getWidth() - 50 * 0.7 - 20);
-		btnRandImg3.setLayoutY(btnRand.getHeight() / 2 - 25 * 0.7 + 12);
+		Hexagon btnRandImg3 = new Hexagon(0.6);
+		btnRandImg3.setLayoutX(btnRand.getWidth() - 50 * 0.6);
+		btnRandImg3.setLayoutY(btnRand.getHeight() / 2 - 25 * 0.6 + 10);
 		btnRandImg3.setFill(defaultFill);
 		btnRandImg3.setStroke(Color.BLACK);
 		
@@ -493,6 +527,108 @@ public class Menu
 			btnRandImg3.setFill(selectedFill);
 	    });   	
 		
+		// Gestion de la taille de la grille
+		StackPane btnTailleGrilleSP = new StackPane();
+		
+		Rectangle btnTailleGrille = new Rectangle(Grille.width, 100);
+		btnTailleGrille.setFill(Color.TRANSPARENT);
+		
+		Text btnTailleGrilleText = new Text("Choississez une taille de grille :");
+		btnTailleGrilleText.setFont(Font.font("Comic sans ms", 35));
+		btnTailleGrilleText.setBoundsType(TextBoundsType.VISUAL); 
+		btnTailleGrilleText.setFill(Color.BLACK);
+		
+		btnTailleGrilleSP.setLayoutX(Grille.width / 2 - btnTailleGrille.getWidth() / 2);
+		btnTailleGrilleSP.setLayoutY(Grille.height / 7 * 5.5 - btnTailleGrille.getHeight() / 2);
+		btnTailleGrilleSP.getChildren().addAll(btnTailleGrille, btnTailleGrilleText);
+		
+		root.getChildren().add(btnTailleGrilleSP);
+		
+		StackPane btnTailleGrilleValeurSP = new StackPane();
+		
+		Rectangle btnTailleGrilleValeur = new Rectangle(40, 40);
+		btnTailleGrilleValeur.setFill(Color.TRANSPARENT);
+		
+		Text btnTailleGrilleValeurText = new Text("13");
+		btnTailleGrilleValeurText.setFont(Font.font("Comic sans ms", 35));
+		btnTailleGrilleValeurText.setBoundsType(TextBoundsType.VISUAL); 
+		btnTailleGrilleValeurText.setFill(Color.BLACK);
+		
+		btnTailleGrilleValeurSP.setLayoutX(Grille.width / 2 + 290 - btnTailleGrilleValeur.getWidth() / 2);
+		btnTailleGrilleValeurSP.setLayoutY(Grille.height / 7 * 5.5 - 5 - btnTailleGrilleValeur.getHeight() / 2);
+		btnTailleGrilleValeurSP.getChildren().addAll(btnTailleGrilleValeur, btnTailleGrilleValeurText);
+		
+		root.getChildren().add(btnTailleGrilleValeurSP);
+		
+		StackPane btnTaillePlusSP = new StackPane();
+		
+		Rectangle btnTaillePlus = new Rectangle(40, 40);
+		btnTaillePlus.setFill(Color.WHITE);
+		btnTaillePlus.setStroke(Color.BLACK);
+		
+		Text btnTaillePlusText = new Text("+");
+		btnTaillePlusText.setFont(Font.font("Comic sans ms", 35));
+		btnTaillePlusText.setBoundsType(TextBoundsType.VISUAL); 
+		btnTaillePlusText.setFill(Color.BLACK);
+		
+		btnTaillePlusSP.setLayoutX(Grille.width / 2 + 340 - btnTaillePlus.getWidth() / 2);
+		btnTaillePlusSP.setLayoutY(Grille.height / 7 * 5.5 - btnTaillePlus.getHeight() / 2 - 5);
+		btnTaillePlusSP.getChildren().addAll(btnTaillePlus, btnTaillePlusText);
+		
+		root.getChildren().add(btnTaillePlusSP);
+		
+		StackPane btnTailleMoinsSP = new StackPane();
+		
+		Rectangle btnTailleMoins = new Rectangle(40, 40);
+		btnTailleMoins.setFill(Color.WHITE);
+		btnTailleMoins.setStroke(Color.BLACK);
+		
+		Text btnTailleMoinsText = new Text("-");
+		btnTailleMoinsText.setFont(Font.font("Comic sans ms", 35));
+		btnTailleMoinsText.setBoundsType(TextBoundsType.VISUAL); 
+		btnTailleMoinsText.setFill(Color.BLACK);
+		
+		btnTailleMoinsSP.setLayoutX(Grille.width / 2 + 395 - btnTailleMoins.getWidth() / 2);
+		btnTailleMoinsSP.setLayoutY(Grille.height / 7 * 5.5 - btnTailleMoins.getHeight() / 2 - 5);
+		btnTailleMoinsSP.getChildren().addAll(btnTailleMoins, btnTailleMoinsText);
+		
+		root.getChildren().add(btnTailleMoinsSP);
+		
+		btnTaillePlusSP.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
+		{
+			if (tailleGrille + 1 <= 30)
+			{
+				tailleGrille ++;
+				btnTailleMoinsText.setFill(Color.BLACK);
+				btnTailleMoins.setStroke(Color.BLACK);
+			}
+			else
+			{
+				btnTaillePlusText.setFill(Color.RED);
+				btnTaillePlus.setStroke(Color.RED);
+			}
+			
+			btnTailleGrilleValeurText.setText(tailleGrille + "");
+	    });
+		
+		btnTailleMoinsSP.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
+		{
+			if (tailleGrille - 1 >= 6)
+			{
+				tailleGrille --;
+				btnTaillePlusText.setFill(Color.BLACK);
+				btnTaillePlus.setStroke(Color.BLACK);
+			}
+			else
+			{
+				btnTailleMoinsText.setFill(Color.RED);
+				btnTailleMoins.setStroke(Color.RED);
+			}
+			
+			btnTailleGrilleValeurText.setText(tailleGrille + "");
+	    });
+		
+		// Bouton de démarrage
 		StackPane btnStartStack = new StackPane();
 		
 		Rectangle btnStart = new Rectangle(200, 100);
@@ -500,7 +636,7 @@ public class Menu
 		btnStart.setStroke(Color.BLACK);
 		
 		Text btnStartText = new Text("Go !");
-		btnStartText.setFont(Font.font("Arial", 80));
+		btnStartText.setFont(Font.font("Comic sans ms", 50));
 		btnStartText.setBoundsType(TextBoundsType.VISUAL); 
 		btnStartText.setFill(Color.BLACK);
 		btnStartText.setStroke(Color.BLACK);
@@ -514,9 +650,9 @@ public class Menu
 		btnStartStack.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) ->
 		{
 			System.out.println(nbHumains+" "+ nbIA+" "+typeGrille);
-			Game.initGame (nbHumains, nbIA, typeGrille, primaryStage);
+			Game.initGame (nbHumains, nbIA, typeGrille, tailleGrille, primaryStage);
 	    });
-		
+				
 		Scene scene = new Scene(root, Grille.width, Grille.height, Color.WHITE);
 		primaryStage.setScene(scene);
 	    primaryStage.show();

@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 
 public class Game
 {
-	public static void initGame (int nbHumains, int nbIA, int typeGrille, Stage primaryStage)
+	public static void initGame (int nbHumains, int nbIA, int typeGrille, int tailleGrille, Stage primaryStage)
     {
     	int nbJoueurs = nbHumains + nbIA;
     	Grille grille =  new Grille();
-    	grille.initGrid(6);
+    	grille.initGrid(tailleGrille);
     	
     	Joueur joueurs [] =  new Joueur [nbJoueurs];
     	
