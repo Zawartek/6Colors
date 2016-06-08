@@ -21,8 +21,8 @@ public class Grille
 	private int typeGrille; // 0 : Carre, 1 : Hexagone
 	
 	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-	static int height = (int)(dimension.getHeight() * 0.9);
-	static int width = (int)(dimension.getWidth() * 0.9);
+	static double height = dimension.getHeight() * 0.9;
+	static double width = dimension.getWidth() * 0.9;
 	
 	public Case[][] getGrille()
 	{
@@ -129,7 +129,7 @@ public class Grille
 	public Group graphicalShowHexa()
 	{
 		int x, y;
-		double tailleHexa = (double) height / ((grille.length + 1) * 40);
+		double tailleHexa = Math.min(height / ((grille.length + 1) * 40), width / ((grille.length + 3) * 50));
 
 		Group gridGroup = new Group();
 		
